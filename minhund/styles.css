@@ -63,9 +63,7 @@ input, select, textarea { font-family: var(--font); }
   padding: 2.5rem 1.5rem;
 }
 
-.container--narrow {
-  max-width: 640px;
-}
+.container--narrow { max-width: 640px; }
 
 /* ===========================
    Navigation
@@ -74,14 +72,15 @@ input, select, textarea { font-family: var(--font); }
   position: fixed;
   top: 0; left: 0; right: 0;
   height: var(--nav-h);
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
   padding-inline: 1.5rem;
   background: var(--surface);
   border-bottom: 1px solid var(--border);
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   z-index: 50;
+  gap: 1rem;
 }
 
 .nav__logo {
@@ -96,6 +95,11 @@ input, select, textarea { font-family: var(--font); }
 
 .nav__logo-icon { flex-shrink: 0; }
 
+.nav__center {
+  display: flex;
+  justify-content: center;
+}
+
 .nav__actions, .nav__user {
   display: flex;
   align-items: center;
@@ -105,6 +109,44 @@ input, select, textarea { font-family: var(--font); }
 .nav__greeting {
   font-size: 0.85rem;
   color: var(--muted);
+}
+
+/* Language toggle */
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.2rem 0.4rem;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--subtle);
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  transition: all var(--transition);
+}
+
+.lang-btn.active {
+  background: var(--blue);
+  color: white;
+}
+
+.lang-btn:not(.active):hover {
+  color: var(--text);
+}
+
+.lang-divider {
+  color: var(--border);
+  font-size: 0.75rem;
 }
 
 /* ===========================
@@ -212,7 +254,6 @@ input, select, textarea { font-family: var(--font); }
   flex-wrap: wrap;
 }
 
-/* Demo card */
 .hero__card-demo {
   display: flex;
   justify-content: center;
@@ -244,6 +285,7 @@ input, select, textarea { font-family: var(--font); }
   justify-content: center;
   font-size: 1.4rem;
   background: var(--blue-light);
+  flex-shrink: 0;
 }
 
 .demo-card__header strong {
@@ -293,7 +335,6 @@ input, select, textarea { font-family: var(--font); }
   font-weight: 500;
 }
 
-/* Features */
 .features {
   max-width: 1080px;
   margin-inline: auto;
@@ -310,7 +351,7 @@ input, select, textarea { font-family: var(--font); }
 
 .features__grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 1.25rem;
 }
 
@@ -474,8 +515,46 @@ input, select, textarea { font-family: var(--font); }
   margin-top: 1.5rem;
 }
 
-.form-card {
-  padding: 2rem;
+.form-card { padding: 2rem; }
+
+/* ===========================
+   Photo Upload
+   =========================== */
+.photo-section {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.photo-preview-wrap {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--blue-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 2px solid var(--border);
+}
+
+.photo-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.photo-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
 }
 
 /* ===========================
@@ -509,7 +588,6 @@ input, select, textarea { font-family: var(--font); }
   margin-bottom: 1rem;
 }
 
-/* Reminders */
 .reminders-list {
   display: flex;
   flex-direction: column;
@@ -533,11 +611,15 @@ input, select, textarea { font-family: var(--font); }
   border-color: #FECACA;
 }
 
+.reminder-item.vet {
+  background: var(--green-light);
+  border-color: #A7F3D0;
+}
+
 .reminder-item__icon { font-size: 1rem; }
 .reminder-item__text { color: var(--text); }
 .reminder-item__days { margin-left: auto; font-weight: 600; font-size: 0.8rem; color: var(--muted); }
 
-/* Pets grid */
 .pets-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -577,6 +659,13 @@ input, select, textarea { font-family: var(--font); }
   justify-content: center;
   font-size: 1.5rem;
   flex-shrink: 0;
+  overflow: hidden;
+}
+
+.pet-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .pet-card__name {
@@ -648,6 +737,14 @@ input, select, textarea { font-family: var(--font); }
   justify-content: center;
   font-size: 2rem;
   flex-shrink: 0;
+  overflow: hidden;
+  border: 2px solid var(--border);
+}
+
+.pet-header__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .pet-header__info h1 {
@@ -670,7 +767,6 @@ input, select, textarea { font-family: var(--font); }
 /* Tabs */
 .tabs {
   display: flex;
-  gap: 0;
   border-bottom: 2px solid var(--border);
   margin-bottom: 1.5rem;
   overflow-x: auto;
@@ -703,7 +799,7 @@ input, select, textarea { font-family: var(--font); }
   margin-bottom: 1rem;
 }
 
-/* Overview grid */
+/* Overview */
 .overview-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -773,6 +869,19 @@ input, select, textarea { font-family: var(--font); }
 
 .upcoming-item .badge-days.urgent { color: var(--red); }
 
+/* Vet card */
+.vet-info-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 2rem;
+}
+
+.vet-contact-link {
+  color: var(--blue);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
 /* Table */
 .table-wrap {
   background: var(--surface);
@@ -818,10 +927,10 @@ input, select, textarea { font-family: var(--font); }
   font-weight: 600;
 }
 
-.status-pill--due { background: var(--amber-light); color: #92400E; }
-.status-pill--ok  { background: var(--green-light); color: #065F46; }
-.status-pill--overdue { background: var(--red-light); color: #991B1B; }
-.status-pill--active { background: var(--blue-light); color: var(--blue-dark); }
+.status-pill--due      { background: var(--amber-light); color: #92400E; }
+.status-pill--ok       { background: var(--green-light); color: #065F46; }
+.status-pill--overdue  { background: var(--red-light);   color: #991B1B; }
+.status-pill--active   { background: var(--blue-light);  color: var(--blue-dark); }
 
 /* Weight chart */
 #weight-chart-wrap {
@@ -830,10 +939,10 @@ input, select, textarea { font-family: var(--font); }
   min-height: 180px;
 }
 
-.chart-line { fill: none; stroke: var(--blue); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
-.chart-area { fill: url(#chart-gradient); }
-.chart-dot  { fill: var(--blue); stroke: white; stroke-width: 2; }
-.chart-label{ font-size: 10px; fill: var(--muted); font-family: var(--font); }
+.chart-line  { fill: none; stroke: var(--blue); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+.chart-area  { fill: url(#chart-gradient); }
+.chart-dot   { fill: var(--blue); stroke: white; stroke-width: 2; }
+.chart-label { font-size: 10px; fill: var(--muted); font-family: var(--font); }
 .chart-empty { font-size: 0.85rem; fill: var(--subtle); font-family: var(--font); }
 
 /* ===========================
@@ -932,25 +1041,29 @@ input, select, textarea { font-family: var(--font); }
   box-shadow: var(--shadow-md);
 }
 
-.toast.show {
-  transform: translateY(0);
-  opacity: 1;
-}
-
+.toast.show { transform: translateY(0); opacity: 1; }
 .toast.success { background: var(--green); }
 .toast.error   { background: var(--red); }
 
 /* ===========================
    Responsive
    =========================== */
+@media (max-width: 900px) {
+  .features__grid { grid-template-columns: repeat(3, 1fr); }
+}
+
 @media (max-width: 768px) {
+  .nav { grid-template-columns: auto auto; }
+  .nav__center { display: none; }
+
   .hero { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
   .hero__visual { display: none; }
-  .features__grid { grid-template-columns: repeat(2, 1fr); }
   .overview-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .pet-header__actions { margin-left: 0; }
   .modal { max-width: calc(100vw - 2rem); }
+  .features__grid { grid-template-columns: repeat(2, 1fr); }
+  .vet-info-card { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 480px) {

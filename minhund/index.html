@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="html-root">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,13 +27,22 @@
       </svg>
       <span>MinHund</span>
     </a>
+
+    <div class="nav__center">
+      <div class="lang-toggle">
+        <button id="lang-en" class="lang-btn active" onclick="setLang('en')">EN</button>
+        <span class="lang-divider">|</span>
+        <button id="lang-no" class="lang-btn" onclick="setLang('no')">NO</button>
+      </div>
+    </div>
+
     <div class="nav__actions" id="nav-actions">
-      <button class="btn btn--ghost" onclick="showView('auth','login')">Log in</button>
-      <button class="btn btn--primary" onclick="showView('auth','register')">Get Started</button>
+      <button class="btn btn--ghost" onclick="showView('auth','login')" data-i18n="navLogin">Log in</button>
+      <button class="btn btn--primary" onclick="showView('auth','register')" data-i18n="navGetStarted">Get Started</button>
     </div>
     <div class="nav__user hidden" id="nav-user">
       <span class="nav__greeting" id="nav-greeting"></span>
-      <button class="btn btn--ghost btn--sm" onclick="logout()">Log out</button>
+      <button class="btn btn--ghost btn--sm" onclick="logout()" data-i18n="navLogout">Log out</button>
     </div>
   </nav>
 
@@ -41,19 +50,19 @@
   <main id="view-landing" class="view">
     <section class="hero">
       <div class="hero__text">
-        <span class="badge">Free · No credit card needed</span>
-        <h1>Your pet's health,<br /><em>all in one place.</em></h1>
-        <p>MinHund helps you track your pet's weight, vaccinations, medications, and more — so you never miss a vet visit or a dose.</p>
+        <span class="badge" data-i18n="heroBadge">Free · No credit card needed</span>
+        <h1><span data-i18n="heroTitle">Your pet's health,</span><br /><em data-i18n="heroTitleEm">all in one place.</em></h1>
+        <p data-i18n="heroSub">MinHund helps you track your pet's weight, vaccinations, medications, and more — so you never miss a vet visit or a dose.</p>
         <div class="hero__ctas">
-          <button class="btn btn--primary btn--lg" onclick="showView('auth','register')">Create a free account</button>
-          <button class="btn btn--ghost btn--lg" onclick="showView('auth','login')">I already have an account</button>
+          <button class="btn btn--primary btn--lg" onclick="showView('auth','register')" data-i18n="heroCta1">Create a free account</button>
+          <button class="btn btn--ghost btn--lg" onclick="showView('auth','login')" data-i18n="heroCta2">I already have an account</button>
         </div>
       </div>
       <div class="hero__visual" aria-hidden="true">
         <div class="hero__card-demo">
           <div class="demo-card">
             <div class="demo-card__header">
-              <div class="demo-avatar demo-avatar--dog">🐶</div>
+              <div class="demo-avatar">🐶</div>
               <div>
                 <strong>Bella</strong>
                 <span>Golden Retriever · 3 yrs</span>
@@ -61,37 +70,42 @@
             </div>
             <div class="demo-stats">
               <div class="demo-stat"><span class="demo-stat__val">28.4</span><span class="demo-stat__label">kg</span></div>
-              <div class="demo-stat"><span class="demo-stat__val">5</span><span class="demo-stat__label">shots</span></div>
-              <div class="demo-stat"><span class="demo-stat__val">2</span><span class="demo-stat__label">meds</span></div>
+              <div class="demo-stat"><span class="demo-stat__val">5</span><span class="demo-stat__label" data-i18n="demoShots">shots</span></div>
+              <div class="demo-stat"><span class="demo-stat__val">2</span><span class="demo-stat__label" data-i18n="demoMeds">meds</span></div>
             </div>
-            <div class="demo-alert">⚡ Rabies booster due in 12 days</div>
+            <div class="demo-alert" data-i18n="demoAlert">⚡ Rabies booster due in 12 days</div>
           </div>
         </div>
       </div>
     </section>
 
     <section class="features">
-      <h2>Everything your pet needs, tracked.</h2>
+      <h2 data-i18n="featuresTitle">Everything your pet needs, tracked.</h2>
       <div class="features__grid">
         <div class="feature-card">
           <div class="feature-card__icon">⚖️</div>
-          <h3>Weight Log</h3>
-          <p>Record and visualise your pet's weight over time. Spot trends early.</p>
+          <h3 data-i18n="feat1Title">Weight Log</h3>
+          <p data-i18n="feat1Desc">Record and visualise your pet's weight over time. Spot trends early.</p>
         </div>
         <div class="feature-card">
           <div class="feature-card__icon">💉</div>
-          <h3>Vaccination Schedule</h3>
-          <p>Log every shot and get reminders before the next one is due.</p>
+          <h3 data-i18n="feat2Title">Vaccination Schedule</h3>
+          <p data-i18n="feat2Desc">Log every shot and get reminders before the next one is due.</p>
         </div>
         <div class="feature-card">
           <div class="feature-card__icon">💊</div>
-          <h3>Medication Tracker</h3>
-          <p>Keep track of dosage, frequency, and duration for all medications.</p>
+          <h3 data-i18n="feat3Title">Medication Tracker</h3>
+          <p data-i18n="feat3Desc">Keep track of dosage, frequency, and duration for all medications.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card__icon">🏥</div>
+          <h3 data-i18n="feat4Title">Vet Records</h3>
+          <p data-i18n="feat4Desc">Store your vet's contact info and track appointments for every pet.</p>
         </div>
         <div class="feature-card">
           <div class="feature-card__icon">🐾</div>
-          <h3>Multiple Pets</h3>
-          <p>One account for all your animals. Dogs, cats, rabbits — all welcome.</p>
+          <h3 data-i18n="feat5Title">Multiple Pets</h3>
+          <p data-i18n="feat5Desc">One account for all your animals. Dogs, cats, rabbits — all welcome.</p>
         </div>
       </div>
     </section>
@@ -102,44 +116,44 @@
     <div class="auth-wrap">
       <div class="auth-box">
         <div class="auth-tabs">
-          <button class="auth-tab active" id="tab-login" onclick="switchAuthTab('login')">Log in</button>
-          <button class="auth-tab" id="tab-register" onclick="switchAuthTab('register')">Register</button>
+          <button class="auth-tab active" id="tab-login" onclick="switchAuthTab('login')" data-i18n="loginTab">Log in</button>
+          <button class="auth-tab" id="tab-register" onclick="switchAuthTab('register')" data-i18n="registerTab">Register</button>
         </div>
 
         <!-- Login -->
         <form id="form-login" class="auth-form" onsubmit="handleLogin(event)">
-          <h2>Welcome back</h2>
+          <h2 data-i18n="loginTitle">Welcome back</h2>
           <div class="form-group">
-            <label for="login-email">Email</label>
-            <input type="email" id="login-email" class="input" placeholder="you@example.com" required />
+            <label for="login-email" data-i18n="labelEmail">Email</label>
+            <input type="email" id="login-email" class="input" data-i18n-ph="phEmail" placeholder="you@example.com" required />
           </div>
           <div class="form-group">
-            <label for="login-password">Password</label>
+            <label for="login-password" data-i18n="labelPassword">Password</label>
             <input type="password" id="login-password" class="input" placeholder="••••••••" required />
           </div>
           <p class="auth-error hidden" id="login-error"></p>
-          <button type="submit" class="btn btn--primary btn--full">Log in</button>
-          <p class="auth-switch">No account? <a href="#" onclick="switchAuthTab('register'); return false;">Register free</a></p>
+          <button type="submit" class="btn btn--primary btn--full" data-i18n="loginBtn">Log in</button>
+          <p class="auth-switch"><span data-i18n="loginSwitch">No account?</span> <a href="#" onclick="switchAuthTab('register'); return false;" data-i18n="loginSwitchLink">Register free</a></p>
         </form>
 
         <!-- Register -->
         <form id="form-register" class="auth-form hidden" onsubmit="handleRegister(event)">
-          <h2>Create your account</h2>
+          <h2 data-i18n="regTitle">Create your account</h2>
           <div class="form-group">
-            <label for="reg-name">Your name</label>
-            <input type="text" id="reg-name" class="input" placeholder="Jane Smith" required />
+            <label for="reg-name" data-i18n="labelName">Your name</label>
+            <input type="text" id="reg-name" class="input" data-i18n-ph="phName" placeholder="Jane Smith" required />
           </div>
           <div class="form-group">
-            <label for="reg-email">Email</label>
-            <input type="email" id="reg-email" class="input" placeholder="you@example.com" required />
+            <label for="reg-email" data-i18n="labelEmail">Email</label>
+            <input type="email" id="reg-email" class="input" data-i18n-ph="phEmail" placeholder="you@example.com" required />
           </div>
           <div class="form-group">
-            <label for="reg-password">Password</label>
-            <input type="password" id="reg-password" class="input" placeholder="Min. 6 characters" minlength="6" required />
+            <label for="reg-password" data-i18n="labelPassword">Password</label>
+            <input type="password" id="reg-password" class="input" data-i18n-ph="phPassword" placeholder="Min. 6 characters" minlength="6" required />
           </div>
           <p class="auth-error hidden" id="reg-error"></p>
-          <button type="submit" class="btn btn--primary btn--full">Create account</button>
-          <p class="auth-switch">Already registered? <a href="#" onclick="switchAuthTab('login'); return false;">Log in</a></p>
+          <button type="submit" class="btn btn--primary btn--full" data-i18n="regBtn">Create account</button>
+          <p class="auth-switch"><span data-i18n="regSwitch">Already registered?</span> <a href="#" onclick="switchAuthTab('login'); return false;" data-i18n="regSwitchLink">Log in</a></p>
         </form>
       </div>
     </div>
@@ -150,31 +164,28 @@
     <div class="container">
       <div class="dashboard-header">
         <div>
-          <h1 class="page-title">Your Pets</h1>
+          <h1 class="page-title" data-i18n="yourPets">Your Pets</h1>
           <p class="page-sub" id="dashboard-sub"></p>
         </div>
         <button class="btn btn--primary" onclick="showView('pet-form')">
           <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"/></svg>
-          Add Pet
+          <span data-i18n="addPet">Add Pet</span>
         </button>
       </div>
 
-      <!-- Upcoming reminders -->
       <div id="reminders-section" class="hidden">
-        <h2 class="section-title">Upcoming Reminders</h2>
+        <h2 class="section-title" data-i18n="upcomingReminders">Upcoming Reminders</h2>
         <div class="reminders-list" id="reminders-list"></div>
       </div>
 
-      <!-- Pet grid -->
-      <h2 class="section-title" id="pets-heading">All Pets</h2>
+      <h2 class="section-title" id="pets-heading" data-i18n="allPets">All Pets</h2>
       <div class="pets-grid" id="pets-grid"></div>
 
-      <!-- Empty state -->
       <div class="empty-state hidden" id="empty-pets">
         <div class="empty-state__icon">🐾</div>
-        <h3>No pets yet</h3>
-        <p>Add your first pet to start tracking their health.</p>
-        <button class="btn btn--primary" onclick="showView('pet-form')">Add your first pet</button>
+        <h3 data-i18n="noPetsTitle">No pets yet</h3>
+        <p data-i18n="noPetsDesc">Add your first pet to start tracking their health.</p>
+        <button class="btn btn--primary" onclick="showView('pet-form')" data-i18n="addFirstPet">Add your first pet</button>
       </div>
     </div>
   </main>
@@ -184,16 +195,17 @@
     <div class="container">
       <button class="back-btn" onclick="showView('dashboard')">
         <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"/></svg>
-        Back to dashboard
+        <span data-i18n="backToDash">Back to dashboard</span>
       </button>
 
       <div class="pet-header" id="pet-header"></div>
 
       <div class="tabs">
-        <button class="tab active" data-tab="overview" onclick="switchTab('overview')">Overview</button>
-        <button class="tab" data-tab="weight" onclick="switchTab('weight')">Weight</button>
-        <button class="tab" data-tab="vaccinations" onclick="switchTab('vaccinations')">Vaccinations</button>
-        <button class="tab" data-tab="medications" onclick="switchTab('medications')">Medications</button>
+        <button class="tab active" data-tab="overview" onclick="switchTab('overview')" data-i18n="tabOverview">Overview</button>
+        <button class="tab" data-tab="weight" onclick="switchTab('weight')" data-i18n="tabWeight">Weight</button>
+        <button class="tab" data-tab="vaccinations" onclick="switchTab('vaccinations')" data-i18n="tabVaccinations">Vaccinations</button>
+        <button class="tab" data-tab="medications" onclick="switchTab('medications')" data-i18n="tabMedications">Medications</button>
+        <button class="tab" data-tab="vet" onclick="switchTab('vet')" data-i18n="tabVet">Vet</button>
       </div>
 
       <!-- Tab: Overview -->
@@ -207,126 +219,209 @@
       <!-- Tab: Weight -->
       <div class="tab-panel hidden" id="panel-weight">
         <div class="panel-header">
-          <h2 class="section-title">Weight History</h2>
-          <button class="btn btn--primary btn--sm" onclick="showModal('weight')">+ Add Entry</button>
+          <h2 class="section-title" data-i18n="weightHistory">Weight History</h2>
+          <button class="btn btn--primary btn--sm" onclick="showModal('weight')"><span data-i18n="addEntry">+ Add Entry</span></button>
         </div>
         <div class="card" id="weight-chart-wrap">
           <svg id="weight-chart" width="100%" height="160"></svg>
         </div>
         <div class="table-wrap">
           <table class="data-table" id="weight-table">
-            <thead><tr><th>Date</th><th>Weight</th><th>Notes</th><th></th></tr></thead>
+            <thead><tr>
+              <th data-i18n="dateCol">Date</th>
+              <th data-i18n="weightCol">Weight</th>
+              <th data-i18n="notesCol">Notes</th>
+              <th></th>
+            </tr></thead>
             <tbody id="weight-tbody"></tbody>
           </table>
         </div>
         <div class="empty-state hidden" id="weight-empty">
           <div class="empty-state__icon">⚖️</div>
-          <p>No weight entries yet.</p>
-          <button class="btn btn--primary btn--sm" onclick="showModal('weight')">Add first entry</button>
+          <p data-i18n="noWeightYet">No weight entries yet.</p>
+          <button class="btn btn--primary btn--sm" onclick="showModal('weight')" data-i18n="addFirstEntry">Add first entry</button>
         </div>
       </div>
 
       <!-- Tab: Vaccinations -->
       <div class="tab-panel hidden" id="panel-vaccinations">
         <div class="panel-header">
-          <h2 class="section-title">Vaccinations</h2>
-          <button class="btn btn--primary btn--sm" onclick="showModal('vaccination')">+ Add Vaccination</button>
+          <h2 class="section-title" data-i18n="tabVaccinations">Vaccinations</h2>
+          <button class="btn btn--primary btn--sm" onclick="showModal('vaccination')"><span data-i18n="addVacc">+ Add Vaccination</span></button>
         </div>
         <div class="table-wrap">
           <table class="data-table" id="vacc-table">
-            <thead><tr><th>Vaccine</th><th>Date Given</th><th>Next Due</th><th>Notes</th><th></th></tr></thead>
+            <thead><tr>
+              <th data-i18n="vaccineCol">Vaccine</th>
+              <th data-i18n="dateGivenCol">Date Given</th>
+              <th data-i18n="nextDueCol">Next Due</th>
+              <th data-i18n="notesCol">Notes</th>
+              <th></th>
+            </tr></thead>
             <tbody id="vacc-tbody"></tbody>
           </table>
         </div>
         <div class="empty-state hidden" id="vacc-empty">
           <div class="empty-state__icon">💉</div>
-          <p>No vaccinations recorded yet.</p>
-          <button class="btn btn--primary btn--sm" onclick="showModal('vaccination')">Add first vaccination</button>
+          <p data-i18n="noVaccYet">No vaccinations recorded yet.</p>
+          <button class="btn btn--primary btn--sm" onclick="showModal('vaccination')" data-i18n="addFirstVacc">Add first vaccination</button>
         </div>
       </div>
 
       <!-- Tab: Medications -->
       <div class="tab-panel hidden" id="panel-medications">
         <div class="panel-header">
-          <h2 class="section-title">Medications</h2>
-          <button class="btn btn--primary btn--sm" onclick="showModal('medication')">+ Add Medication</button>
+          <h2 class="section-title" data-i18n="tabMedications">Medications</h2>
+          <button class="btn btn--primary btn--sm" onclick="showModal('medication')"><span data-i18n="addMed">+ Add Medication</span></button>
         </div>
         <div class="table-wrap">
           <table class="data-table" id="med-table">
-            <thead><tr><th>Medication</th><th>Dosage</th><th>Frequency</th><th>Start</th><th>End</th><th>Notes</th><th></th></tr></thead>
+            <thead><tr>
+              <th data-i18n="medicationCol">Medication</th>
+              <th data-i18n="dosageCol">Dosage</th>
+              <th data-i18n="frequencyCol">Frequency</th>
+              <th data-i18n="startCol">Start</th>
+              <th data-i18n="endCol">End</th>
+              <th data-i18n="notesCol">Notes</th>
+              <th></th>
+            </tr></thead>
             <tbody id="med-tbody"></tbody>
           </table>
         </div>
         <div class="empty-state hidden" id="med-empty">
           <div class="empty-state__icon">💊</div>
-          <p>No medications recorded yet.</p>
-          <button class="btn btn--primary btn--sm" onclick="showModal('medication')">Add first medication</button>
+          <p data-i18n="noMedYet">No medications recorded yet.</p>
+          <button class="btn btn--primary btn--sm" onclick="showModal('medication')" data-i18n="addFirstMed">Add first medication</button>
         </div>
+      </div>
+
+      <!-- Tab: Vet -->
+      <div class="tab-panel hidden" id="panel-vet">
+        <div class="panel-header">
+          <h2 class="section-title" data-i18n="tabVet">Vet</h2>
+        </div>
+        <form class="card form-card" id="vet-form" onsubmit="handleVetForm(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="vet-clinic" data-i18n="clinicName">Clinic Name</label>
+              <input type="text" id="vet-clinic" class="input" data-i18n-ph="phClinic" placeholder="Oslo Animal Clinic" />
+            </div>
+            <div class="form-group">
+              <label for="vet-doctor" data-i18n="vetDoctorName">Vet Name</label>
+              <input type="text" id="vet-doctor" class="input" data-i18n-ph="phVetName" placeholder="Dr. Hansen" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="vet-phone" data-i18n="phoneLabel">Phone</label>
+              <input type="tel" id="vet-phone" class="input" placeholder="+47 22 00 00 00" />
+            </div>
+            <div class="form-group">
+              <label for="vet-email" data-i18n="emailLabel">Email</label>
+              <input type="email" id="vet-email" class="input" placeholder="clinic@example.com" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="vet-address" data-i18n="addressLabel">Address</label>
+            <input type="text" id="vet-address" class="input" data-i18n-ph="phAddress" placeholder="Storgata 1, Oslo" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="vet-last-visit" data-i18n="lastVisitLabel">Last Visit</label>
+              <input type="date" id="vet-last-visit" class="input" />
+            </div>
+            <div class="form-group">
+              <label for="vet-next-appt" data-i18n="nextApptLabel">Next Appointment</label>
+              <input type="date" id="vet-next-appt" class="input" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="vet-notes" data-i18n="notesLabel">Notes</label>
+            <textarea id="vet-notes" class="input textarea" rows="3" data-i18n-ph="phVetNotes" placeholder="Allergies, special notes for the vet..."></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn--primary" data-i18n="saveVetInfo">Save Vet Info</button>
+          </div>
+        </form>
       </div>
     </div>
   </main>
 
-  <!-- ============ VIEW: PET FORM (add/edit) ============ -->
+  <!-- ============ VIEW: PET FORM ============ -->
   <main id="view-pet-form" class="view hidden">
     <div class="container container--narrow">
       <button class="back-btn" id="pet-form-back" onclick="showView('dashboard')">
         <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"/></svg>
-        Cancel
+        <span data-i18n="cancelBtn">Cancel</span>
       </button>
-      <h1 class="page-title" id="pet-form-title">Add a Pet</h1>
+      <h1 class="page-title" id="pet-form-title" data-i18n="addPetTitle">Add a Pet</h1>
       <form class="card form-card" id="pet-form" onsubmit="handlePetForm(event)">
+
+        <!-- Photo upload -->
+        <div class="photo-section">
+          <div class="photo-preview-wrap" id="photo-preview-wrap">
+            <div class="photo-preview-emoji" id="photo-preview-emoji">🐾</div>
+            <img id="photo-preview-img" src="" alt="" class="photo-preview-img hidden" />
+          </div>
+          <div class="photo-actions">
+            <label class="btn btn--ghost btn--sm" for="pet-photo" data-i18n="choosePhoto">Choose Photo</label>
+            <input type="file" id="pet-photo" accept="image/*" style="display:none" onchange="handlePhotoUpload(event)" />
+            <button type="button" class="btn btn--danger btn--sm hidden" id="remove-photo-btn" onclick="removePhoto()" data-i18n="removePhoto">Remove</button>
+          </div>
+        </div>
+
         <div class="form-row">
           <div class="form-group">
-            <label for="pet-name">Pet Name *</label>
-            <input type="text" id="pet-name" class="input" placeholder="Bella" required />
+            <label for="pet-name" data-i18n="petNameLabel">Pet Name *</label>
+            <input type="text" id="pet-name" class="input" data-i18n-ph="phPetName" placeholder="Bella" required />
           </div>
           <div class="form-group">
-            <label for="pet-species">Species *</label>
+            <label for="pet-species" data-i18n="speciesLabel">Species *</label>
             <select id="pet-species" class="input" required>
-              <option value="">Select…</option>
-              <option>Dog</option>
-              <option>Cat</option>
-              <option>Rabbit</option>
-              <option>Bird</option>
-              <option>Other</option>
+              <option value="" data-i18n="speciesSelect">Select…</option>
+              <option value="Dog" data-i18n="speciesDog">Dog</option>
+              <option value="Cat" data-i18n="speciesCat">Cat</option>
+              <option value="Rabbit" data-i18n="speciesRabbit">Rabbit</option>
+              <option value="Bird" data-i18n="speciesBird">Bird</option>
+              <option value="Other" data-i18n="speciesOther">Other</option>
             </select>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label for="pet-breed">Breed</label>
-            <input type="text" id="pet-breed" class="input" placeholder="e.g. Golden Retriever" />
+            <label for="pet-breed" data-i18n="breedLabel">Breed</label>
+            <input type="text" id="pet-breed" class="input" data-i18n-ph="phBreed" placeholder="e.g. Golden Retriever" />
           </div>
           <div class="form-group">
-            <label for="pet-gender">Gender</label>
+            <label for="pet-gender" data-i18n="genderLabel">Gender</label>
             <select id="pet-gender" class="input">
-              <option value="">Unknown</option>
-              <option>Male</option>
-              <option>Female</option>
+              <option value="" data-i18n="genderUnknown">Unknown</option>
+              <option value="Male" data-i18n="genderMale">Male</option>
+              <option value="Female" data-i18n="genderFemale">Female</option>
             </select>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label for="pet-dob">Date of Birth</label>
+            <label for="pet-dob" data-i18n="dobLabel">Date of Birth</label>
             <input type="date" id="pet-dob" class="input" />
           </div>
           <div class="form-group">
-            <label for="pet-color">Colour / Markings</label>
-            <input type="text" id="pet-color" class="input" placeholder="e.g. Golden, white paws" />
+            <label for="pet-color" data-i18n="colorLabel">Colour / Markings</label>
+            <input type="text" id="pet-color" class="input" data-i18n-ph="phColor" placeholder="e.g. Golden, white paws" />
           </div>
         </div>
         <div class="form-group">
-          <label for="pet-microchip">Microchip Number</label>
-          <input type="text" id="pet-microchip" class="input" placeholder="15-digit number" />
+          <label for="pet-microchip" data-i18n="microchipLabel">Microchip Number</label>
+          <input type="text" id="pet-microchip" class="input" data-i18n-ph="phMicrochip" placeholder="15-digit number" />
         </div>
         <div class="form-group">
-          <label for="pet-notes">Notes</label>
-          <textarea id="pet-notes" class="input textarea" rows="3" placeholder="Allergies, vet info, anything useful…"></textarea>
+          <label for="pet-notes" data-i18n="notesLabel">Notes</label>
+          <textarea id="pet-notes" class="input textarea" rows="3" data-i18n-ph="phNotes" placeholder="Allergies, vet info, anything useful…"></textarea>
         </div>
         <div class="form-actions">
-          <button type="button" class="btn btn--ghost" onclick="showView('dashboard')">Cancel</button>
-          <button type="submit" class="btn btn--primary" id="pet-form-submit">Save Pet</button>
+          <button type="button" class="btn btn--ghost" id="pet-cancel-btn" onclick="showView('dashboard')" data-i18n="cancelBtn">Cancel</button>
+          <button type="submit" class="btn btn--primary" id="pet-form-submit" data-i18n="savePet">Save Pet</button>
         </div>
       </form>
     </div>
@@ -338,17 +433,17 @@
   <!-- Weight modal -->
   <div class="modal hidden" id="modal-weight">
     <div class="modal__header">
-      <h3>Add Weight Entry</h3>
+      <h3 data-i18n="addWeightTitle">Add Weight Entry</h3>
       <button class="modal__close" onclick="hideModal()">✕</button>
     </div>
     <form onsubmit="handleAddRecord(event,'weight')">
       <div class="form-row">
         <div class="form-group">
-          <label for="w-date">Date *</label>
+          <label for="w-date" data-i18n="dateLabel">Date *</label>
           <input type="date" id="w-date" class="input" required />
         </div>
         <div class="form-group">
-          <label for="w-value">Weight *</label>
+          <label for="w-value" data-i18n="weightLabel">Weight *</label>
           <div class="input-group">
             <input type="number" id="w-value" class="input" step="0.1" min="0" placeholder="0.0" required />
             <select id="w-unit" class="input input--unit">
@@ -359,12 +454,12 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="w-notes">Notes</label>
-        <input type="text" id="w-notes" class="input" placeholder="Optional notes" />
+        <label for="w-notes" data-i18n="notesLabel">Notes</label>
+        <input type="text" id="w-notes" class="input" data-i18n-ph="phOptionalNotes" placeholder="Optional notes" />
       </div>
       <div class="form-actions">
-        <button type="button" class="btn btn--ghost" onclick="hideModal()">Cancel</button>
-        <button type="submit" class="btn btn--primary">Save Entry</button>
+        <button type="button" class="btn btn--ghost" onclick="hideModal()" data-i18n="cancelBtn">Cancel</button>
+        <button type="submit" class="btn btn--primary" data-i18n="saveEntry">Save Entry</button>
       </div>
     </form>
   </div>
@@ -372,31 +467,31 @@
   <!-- Vaccination modal -->
   <div class="modal hidden" id="modal-vaccination">
     <div class="modal__header">
-      <h3>Add Vaccination</h3>
+      <h3 data-i18n="addVaccTitle">Add Vaccination</h3>
       <button class="modal__close" onclick="hideModal()">✕</button>
     </div>
     <form onsubmit="handleAddRecord(event,'vaccination')">
       <div class="form-group">
-        <label for="v-name">Vaccine Name *</label>
-        <input type="text" id="v-name" class="input" placeholder="e.g. Rabies, Distemper" required />
+        <label for="v-name" data-i18n="vaccNameLabel">Vaccine Name *</label>
+        <input type="text" id="v-name" class="input" data-i18n-ph="phVaccName" placeholder="e.g. Rabies, Distemper" required />
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label for="v-given">Date Given *</label>
+          <label for="v-given" data-i18n="dateGivenLabel">Date Given *</label>
           <input type="date" id="v-given" class="input" required />
         </div>
         <div class="form-group">
-          <label for="v-due">Next Due</label>
+          <label for="v-due" data-i18n="nextDueLabel">Next Due</label>
           <input type="date" id="v-due" class="input" />
         </div>
       </div>
       <div class="form-group">
-        <label for="v-notes">Notes</label>
-        <input type="text" id="v-notes" class="input" placeholder="Batch number, clinic, etc." />
+        <label for="v-notes" data-i18n="notesLabel">Notes</label>
+        <input type="text" id="v-notes" class="input" data-i18n-ph="phBatchNotes" placeholder="Batch number, clinic, etc." />
       </div>
       <div class="form-actions">
-        <button type="button" class="btn btn--ghost" onclick="hideModal()">Cancel</button>
-        <button type="submit" class="btn btn--primary">Save Vaccination</button>
+        <button type="button" class="btn btn--ghost" onclick="hideModal()" data-i18n="cancelBtn">Cancel</button>
+        <button type="submit" class="btn btn--primary" data-i18n="saveVacc">Save Vaccination</button>
       </div>
     </form>
   </div>
@@ -404,41 +499,41 @@
   <!-- Medication modal -->
   <div class="modal hidden" id="modal-medication">
     <div class="modal__header">
-      <h3>Add Medication</h3>
+      <h3 data-i18n="addMedTitle">Add Medication</h3>
       <button class="modal__close" onclick="hideModal()">✕</button>
     </div>
     <form onsubmit="handleAddRecord(event,'medication')">
       <div class="form-row">
         <div class="form-group">
-          <label for="m-name">Medication Name *</label>
-          <input type="text" id="m-name" class="input" placeholder="e.g. Bravecto, Apoquel" required />
+          <label for="m-name" data-i18n="medNameLabel">Medication Name *</label>
+          <input type="text" id="m-name" class="input" data-i18n-ph="phMedName" placeholder="e.g. Bravecto, Apoquel" required />
         </div>
         <div class="form-group">
-          <label for="m-dosage">Dosage *</label>
-          <input type="text" id="m-dosage" class="input" placeholder="e.g. 500mg" required />
+          <label for="m-dosage" data-i18n="dosageLabel">Dosage *</label>
+          <input type="text" id="m-dosage" class="input" data-i18n-ph="phDosage" placeholder="e.g. 500mg" required />
         </div>
       </div>
       <div class="form-group">
-        <label for="m-frequency">Frequency *</label>
-        <input type="text" id="m-frequency" class="input" placeholder="e.g. Once daily, Every 3 months" required />
+        <label for="m-frequency" data-i18n="frequencyLabel">Frequency *</label>
+        <input type="text" id="m-frequency" class="input" data-i18n-ph="phFrequency" placeholder="e.g. Once daily, Every 3 months" required />
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label for="m-start">Start Date</label>
+          <label for="m-start" data-i18n="startDateLabel">Start Date</label>
           <input type="date" id="m-start" class="input" />
         </div>
         <div class="form-group">
-          <label for="m-end">End Date</label>
+          <label for="m-end" data-i18n="endDateLabel">End Date</label>
           <input type="date" id="m-end" class="input" />
         </div>
       </div>
       <div class="form-group">
-        <label for="m-notes">Notes</label>
-        <input type="text" id="m-notes" class="input" placeholder="Prescribing vet, reason, etc." />
+        <label for="m-notes" data-i18n="notesLabel">Notes</label>
+        <input type="text" id="m-notes" class="input" data-i18n-ph="phPrescNotes" placeholder="Prescribing vet, reason, etc." />
       </div>
       <div class="form-actions">
-        <button type="button" class="btn btn--ghost" onclick="hideModal()">Cancel</button>
-        <button type="submit" class="btn btn--primary">Save Medication</button>
+        <button type="button" class="btn btn--ghost" onclick="hideModal()" data-i18n="cancelBtn">Cancel</button>
+        <button type="submit" class="btn btn--primary" data-i18n="saveMed">Save Medication</button>
       </div>
     </form>
   </div>
