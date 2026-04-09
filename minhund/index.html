@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MinHund — Pet Health Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============ TOAST ============ -->
+  <div id="toast" class="toast" role="alert" aria-live="polite"></div>
+
+  <!-- ============ NAV ============ -->
+  <nav class="nav" id="main-nav">
+    <a href="#" class="nav__logo" onclick="showView('landing'); return false;">
+      <svg class="nav__logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="36" height="36" rx="10" fill="#3B82F6"/>
+        <ellipse cx="11" cy="13" rx="3.5" ry="4.5" fill="white" opacity="0.9"/>
+        <ellipse cx="25" cy="13" rx="3.5" ry="4.5" fill="white" opacity="0.9"/>
+        <ellipse cx="7" cy="20" rx="2.8" ry="3.8" fill="white" opacity="0.9" transform="rotate(-20 7 20)"/>
+        <ellipse cx="29" cy="20" rx="2.8" ry="3.8" fill="white" opacity="0.9" transform="rotate(20 29 20)"/>
+        <path d="M18 19 C12 19 9 23 9 26 C9 29 12 31 18 31 C24 31 27 29 27 26 C27 23 24 19 18 19Z" fill="white"/>
+      </svg>
+      <span>MinHund</span>
+    </a>
+    <div class="nav__actions" id="nav-actions">
+      <button class="btn btn--ghost" onclick="showView('auth','login')">Log in</button>
+      <button class="btn btn--primary" onclick="showView('auth','register')">Get Started</button>
+    </div>
+    <div class="nav__user hidden" id="nav-user">
+      <span class="nav__greeting" id="nav-greeting"></span>
+      <button class="btn btn--ghost btn--sm" onclick="logout()">Log out</button>
+    </div>
+  </nav>
+
+  <!-- ============ VIEW: LANDING ============ -->
+  <main id="view-landing" class="view">
+    <section class="hero">
+      <div class="hero__text">
+        <span class="badge">Free · No credit card needed</span>
+        <h1>Your pet's health,<br /><em>all in one place.</em></h1>
+        <p>MinHund helps you track your pet's weight, vaccinations, medications, and more — so you never miss a vet visit or a dose.</p>
+        <div class="hero__ctas">
+          <button class="btn btn--primary btn--lg" onclick="showView('auth','register')">Create a free account</button>
+          <button class="btn btn--ghost btn--lg" onclick="showView('auth','login')">I already have an account</button>
+        </div>
+      </div>
+      <div class="hero__visual" aria-hidden="true">
+        <div class="hero__card-demo">
+          <div class="demo-card">
+            <div class="demo-card__header">
+              <div class="demo-avatar demo-avatar--dog">🐶</div>
+              <div>
+                <strong>Bella</strong>
+                <span>Golden Retriever · 3 yrs</span>
+              </div>
+            </div>
+            <div class="demo-stats">
+              <div class="demo-stat"><span class="demo-stat__val">28.4</span><span class="demo-stat__label">kg</span></div>
+              <div class="demo-stat"><span class="demo-stat__val">5</span><span class="demo-stat__label">shots</span></div>
+              <div class="demo-stat"><span class="demo-stat__val">2</span><span class="demo-stat__label">meds</span></div>
+            </div>
+            <div class="demo-alert">⚡ Rabies booster due in 12 days</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features">
+      <h2>Everything your pet needs, tracked.</h2>
+      <div class="features__grid">
+        <div class="feature-card">
+          <div class="feature-card__icon">⚖️</div>
+          <h3>Weight Log</h3>
+          <p>Record and visualise your pet's weight over time. Spot trends early.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card__icon">💉</div>
+          <h3>Vaccination Schedule</h3>
+          <p>Log every shot and get reminders before the next one is due.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card__icon">💊</div>
+          <h3>Medication Tracker</h3>
+          <p>Keep track of dosage, frequency, and duration for all medications.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card__icon">🐾</div>
+          <h3>Multiple Pets</h3>
+          <p>One account for all your animals. Dogs, cats, rabbits — all welcome.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ VIEW: AUTH ============ -->
+  <main id="view-auth" class="view hidden">
+    <div class="auth-wrap">
+      <div class="auth-box">
+        <div class="auth-tabs">
+          <button class="auth-tab active" id="tab-login" onclick="switchAuthTab('login')">Log in</button>
+          <button class="auth-tab" id="tab-register" onclick="switchAuthTab('register')">Register</button>
+        </div>
+
+        <!-- Login -->
+        <form id="form-login" class="auth-form" onsubmit="handleLogin(event)">
+          <h2>Welcome back</h2>
+          <div class="form-group">
+            <label for="login-email">Email</label>
+            <input type="email" id="login-email" class="input" placeholder="you@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" class="input" placeholder="••••••••" required />
+          </div>
+          <p class="auth-error hidden" id="login-error"></p>
+          <button type="submit" class="btn btn--primary btn--full">Log in</button>
+          <p class="auth-switch">No account? <a href="#" onclick="switchAuthTab('register'); return false;">Register free</a></p>
+        </form>
+
+        <!-- Register -->
+        <form id="form-register" class="auth-form hidden" onsubmit="handleRegister(event)">
+          <h2>Create your account</h2>
+          <div class="form-group">
+            <label for="reg-name">Your name</label>
+            <input type="text" id="reg-name" class="input" placeholder="Jane Smith" required />
+          </div>
+          <div class="form-group">
+            <label for="reg-email">Email</label>
+            <input type="email" id="reg-email" class="input" placeholder="you@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="reg-password">Password</label>
+            <input type="password" id="reg-password" class="input" placeholder="Min. 6 characters" minlength="6" required />
+          </div>
+          <p class="auth-error hidden" id="reg-error"></p>
+          <button type="submit" class="btn btn--primary btn--full">Create account</button>
+          <p class="auth-switch">Already registered? <a href="#" onclick="switchAuthTab('login'); return false;">Log in</a></p>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============ VIEW: DASHBOARD ============ -->
+  <main id="view-dashboard" class="view hidden">
+    <div class="container">
+      <div class="dashboard-header">
+        <div>
+          <h1 class="page-title">Your Pets</h1>
+          <p class="page-sub" id="dashboard-sub"></p>
+        </div>
+        <button class="btn btn--primary" onclick="showView('pet-form')">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"/></svg>
+          Add Pet
+        </button>
+      </div>
+
+      <!-- Upcoming reminders -->
+      <div id="reminders-section" class="hidden">
+        <h2 class="section-title">Upcoming Reminders</h2>
+        <div class="reminders-list" id="reminders-list"></div>
+      </div>
+
+      <!-- Pet grid -->
+      <h2 class="section-title" id="pets-heading">All Pets</h2>
+      <div class="pets-grid" id="pets-grid"></div>
+
+      <!-- Empty state -->
+      <div class="empty-state hidden" id="empty-pets">
+        <div class="empty-state__icon">🐾</div>
+        <h3>No pets yet</h3>
+        <p>Add your first pet to start tracking their health.</p>
+        <button class="btn btn--primary" onclick="showView('pet-form')">Add your first pet</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============ VIEW: PET DETAIL ============ -->
+  <main id="view-pet" class="view hidden">
+    <div class="container">
+      <button class="back-btn" onclick="showView('dashboard')">
+        <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"/></svg>
+        Back to dashboard
+      </button>
+
+      <div class="pet-header" id="pet-header"></div>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="overview" onclick="switchTab('overview')">Overview</button>
+        <button class="tab" data-tab="weight" onclick="switchTab('weight')">Weight</button>
+        <button class="tab" data-tab="vaccinations" onclick="switchTab('vaccinations')">Vaccinations</button>
+        <button class="tab" data-tab="medications" onclick="switchTab('medications')">Medications</button>
+      </div>
+
+      <!-- Tab: Overview -->
+      <div class="tab-panel active" id="panel-overview">
+        <div class="overview-grid">
+          <div class="card" id="overview-info"></div>
+          <div class="card" id="overview-upcoming"></div>
+        </div>
+      </div>
+
+      <!-- Tab: Weight -->
+      <div class="tab-panel hidden" id="panel-weight">
+        <div class="panel-header">
+          <h2 class="section-title">Weight History</h2>
+          <button class="btn btn--primary btn--sm" onclick="showModal('weight')">+ Add Entry</button>
+        </div>
+        <div class="card" id="weight-chart-wrap">
+          <svg id="weight-chart" width="100%" height="160"></svg>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table" id="weight-table">
+            <thead><tr><th>Date</th><th>Weight</th><th>Notes</th><th></th></tr></thead>
+            <tbody id="weight-tbody"></tbody>
+          </table>
+        </div>
+        <div class="empty-state hidden" id="weight-empty">
+          <div class="empty-state__icon">⚖️</div>
+          <p>No weight entries yet.</p>
+          <button class="btn btn--primary btn--sm" onclick="showModal('weight')">Add first entry</button>
+        </div>
+      </div>
+
+      <!-- Tab: Vaccinations -->
+      <div class="tab-panel hidden" id="panel-vaccinations">
+        <div class="panel-header">
+          <h2 class="section-title">Vaccinations</h2>
+          <button class="btn btn--primary btn--sm" onclick="showModal('vaccination')">+ Add Vaccination</button>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table" id="vacc-table">
+            <thead><tr><th>Vaccine</th><th>Date Given</th><th>Next Due</th><th>Notes</th><th></th></tr></thead>
+            <tbody id="vacc-tbody"></tbody>
+          </table>
+        </div>
+        <div class="empty-state hidden" id="vacc-empty">
+          <div class="empty-state__icon">💉</div>
+          <p>No vaccinations recorded yet.</p>
+          <button class="btn btn--primary btn--sm" onclick="showModal('vaccination')">Add first vaccination</button>
+        </div>
+      </div>
+
+      <!-- Tab: Medications -->
+      <div class="tab-panel hidden" id="panel-medications">
+        <div class="panel-header">
+          <h2 class="section-title">Medications</h2>
+          <button class="btn btn--primary btn--sm" onclick="showModal('medication')">+ Add Medication</button>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table" id="med-table">
+            <thead><tr><th>Medication</th><th>Dosage</th><th>Frequency</th><th>Start</th><th>End</th><th>Notes</th><th></th></tr></thead>
+            <tbody id="med-tbody"></tbody>
+          </table>
+        </div>
+        <div class="empty-state hidden" id="med-empty">
+          <div class="empty-state__icon">💊</div>
+          <p>No medications recorded yet.</p>
+          <button class="btn btn--primary btn--sm" onclick="showModal('medication')">Add first medication</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============ VIEW: PET FORM (add/edit) ============ -->
+  <main id="view-pet-form" class="view hidden">
+    <div class="container container--narrow">
+      <button class="back-btn" id="pet-form-back" onclick="showView('dashboard')">
+        <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"/></svg>
+        Cancel
+      </button>
+      <h1 class="page-title" id="pet-form-title">Add a Pet</h1>
+      <form class="card form-card" id="pet-form" onsubmit="handlePetForm(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="pet-name">Pet Name *</label>
+            <input type="text" id="pet-name" class="input" placeholder="Bella" required />
+          </div>
+          <div class="form-group">
+            <label for="pet-species">Species *</label>
+            <select id="pet-species" class="input" required>
+              <option value="">Select…</option>
+              <option>Dog</option>
+              <option>Cat</option>
+              <option>Rabbit</option>
+              <option>Bird</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="pet-breed">Breed</label>
+            <input type="text" id="pet-breed" class="input" placeholder="e.g. Golden Retriever" />
+          </div>
+          <div class="form-group">
+            <label for="pet-gender">Gender</label>
+            <select id="pet-gender" class="input">
+              <option value="">Unknown</option>
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="pet-dob">Date of Birth</label>
+            <input type="date" id="pet-dob" class="input" />
+          </div>
+          <div class="form-group">
+            <label for="pet-color">Colour / Markings</label>
+            <input type="text" id="pet-color" class="input" placeholder="e.g. Golden, white paws" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="pet-microchip">Microchip Number</label>
+          <input type="text" id="pet-microchip" class="input" placeholder="15-digit number" />
+        </div>
+        <div class="form-group">
+          <label for="pet-notes">Notes</label>
+          <textarea id="pet-notes" class="input textarea" rows="3" placeholder="Allergies, vet info, anything useful…"></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn--ghost" onclick="showView('dashboard')">Cancel</button>
+          <button type="submit" class="btn btn--primary" id="pet-form-submit">Save Pet</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- ============ MODALS ============ -->
+  <div class="modal-backdrop hidden" id="modal-backdrop" onclick="hideModal()"></div>
+
+  <!-- Weight modal -->
+  <div class="modal hidden" id="modal-weight">
+    <div class="modal__header">
+      <h3>Add Weight Entry</h3>
+      <button class="modal__close" onclick="hideModal()">✕</button>
+    </div>
+    <form onsubmit="handleAddRecord(event,'weight')">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="w-date">Date *</label>
+          <input type="date" id="w-date" class="input" required />
+        </div>
+        <div class="form-group">
+          <label for="w-value">Weight *</label>
+          <div class="input-group">
+            <input type="number" id="w-value" class="input" step="0.1" min="0" placeholder="0.0" required />
+            <select id="w-unit" class="input input--unit">
+              <option>kg</option>
+              <option>lbs</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="w-notes">Notes</label>
+        <input type="text" id="w-notes" class="input" placeholder="Optional notes" />
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn btn--ghost" onclick="hideModal()">Cancel</button>
+        <button type="submit" class="btn btn--primary">Save Entry</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Vaccination modal -->
+  <div class="modal hidden" id="modal-vaccination">
+    <div class="modal__header">
+      <h3>Add Vaccination</h3>
+      <button class="modal__close" onclick="hideModal()">✕</button>
+    </div>
+    <form onsubmit="handleAddRecord(event,'vaccination')">
+      <div class="form-group">
+        <label for="v-name">Vaccine Name *</label>
+        <input type="text" id="v-name" class="input" placeholder="e.g. Rabies, Distemper" required />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="v-given">Date Given *</label>
+          <input type="date" id="v-given" class="input" required />
+        </div>
+        <div class="form-group">
+          <label for="v-due">Next Due</label>
+          <input type="date" id="v-due" class="input" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="v-notes">Notes</label>
+        <input type="text" id="v-notes" class="input" placeholder="Batch number, clinic, etc." />
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn btn--ghost" onclick="hideModal()">Cancel</button>
+        <button type="submit" class="btn btn--primary">Save Vaccination</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Medication modal -->
+  <div class="modal hidden" id="modal-medication">
+    <div class="modal__header">
+      <h3>Add Medication</h3>
+      <button class="modal__close" onclick="hideModal()">✕</button>
+    </div>
+    <form onsubmit="handleAddRecord(event,'medication')">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="m-name">Medication Name *</label>
+          <input type="text" id="m-name" class="input" placeholder="e.g. Bravecto, Apoquel" required />
+        </div>
+        <div class="form-group">
+          <label for="m-dosage">Dosage *</label>
+          <input type="text" id="m-dosage" class="input" placeholder="e.g. 500mg" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="m-frequency">Frequency *</label>
+        <input type="text" id="m-frequency" class="input" placeholder="e.g. Once daily, Every 3 months" required />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="m-start">Start Date</label>
+          <input type="date" id="m-start" class="input" />
+        </div>
+        <div class="form-group">
+          <label for="m-end">End Date</label>
+          <input type="date" id="m-end" class="input" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="m-notes">Notes</label>
+        <input type="text" id="m-notes" class="input" placeholder="Prescribing vet, reason, etc." />
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn btn--ghost" onclick="hideModal()">Cancel</button>
+        <button type="submit" class="btn btn--primary">Save Medication</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
