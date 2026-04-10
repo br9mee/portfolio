@@ -63,10 +63,9 @@ function initMap() {
   map = L.map('map', { zoomControl: true }).setView(OSLO_CENTER, 14);
 
   L.tileLayer(
-    'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+    'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
     {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
-      subdomains: 'abcd',
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       maxZoom: 19
     }
   ).addTo(map);
@@ -236,6 +235,30 @@ function hideVenue(pub) {
   document.getElementById('sidebar-empty').classList.remove('hidden');
 }
 
+function openMarkerPopup(pub) {
+  if (!pub._marker) return;
+  const popup = L.popup({
+    closeButton: false,
+    className: 'hide-popup',
+    offset: [0, -18],
+    autoPan: false
+  })
+    .setLatLng([pub.lat, pub.lon])
+    .setContent(`<button class="hide-popup__btn" data-id="${pub.id}">Hide</button>`)
+    .openOn(map);
+
+  pub._popup = popup;
+}
+
+// Delegated click handler for popup hide buttons
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.hide-popup__btn');
+  if (!btn) return;
+  const pub = pubs.find(p => String(p.id) === btn.dataset.id);
+  if (pub) hideVenue(pub);
+  map.closePopup();
+});
+
 /* ── Sidebar ─────────────────────────────────────────── */
 function showPubDetails(pub) {
   // Deselect previous
@@ -244,8 +267,10 @@ function showPubDetails(pub) {
     if (prev) refreshMarkerIcon(prev);
   }
 
+  map.closePopup();
   selectedPubId = pub.id;
   refreshMarkerIcon(pub);
+  openMarkerPopup(pub);
 
   const seating   = seatingData[pub.id];
   const direction = seating?.direction ?? null;

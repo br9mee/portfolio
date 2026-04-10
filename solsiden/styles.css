@@ -3,17 +3,17 @@
 
 /* ── Tokens ──────────────────────────────────────────── */
 :root {
-  --bg:        #0a1628;
-  --surface:   #0f1f38;
-  --surface-2: #162845;
-  --border:    #1e3a5f;
-  --text:      #ddeeff;
-  --muted:     #6a8faf;
-  --accent:    #2a80ff;
-  --accent-2:  #5eb6ff;
-  --sun:       #fbbf24;
-  --sun-bg:    rgba(251, 191, 36, 0.15);
-  --shade-bg:  rgba(255,255,255,0.04);
+  --bg:        #f4f6f8;
+  --surface:   #ffffff;
+  --surface-2: #eef1f5;
+  --border:    #d0d7e2;
+  --text:      #1a2332;
+  --muted:     #6b7a94;
+  --accent:    #1a6fe0;
+  --accent-2:  #1558b8;
+  --sun:       #d97706;
+  --sun-bg:    rgba(217, 119, 6, 0.1);
+  --shade-bg:  rgba(0,0,0,0.06);
   --radius:    10px;
   --t:         0.2s ease;
   --sidebar-w: 320px;
@@ -136,7 +136,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  background: rgba(10, 22, 40, 0.85);
+  background: rgba(244, 246, 248, 0.88);
   backdrop-filter: blur(4px);
   font-size: 0.9rem;
   color: var(--muted);
@@ -144,7 +144,7 @@ body {
 }
 
 .map-error { gap: 0.75rem; }
-.map-error p { color: #f87171; font-size: 0.9rem; }
+.map-error p { color: #b91c1c; font-size: 0.9rem; }
 
 .spinner {
   width: 32px;
@@ -349,7 +349,7 @@ body {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: var(--surface-2);
+  background: var(--surface);
   border: 2px solid var(--border);
   display: flex;
   align-items: center;
@@ -357,7 +357,7 @@ body {
   font-size: 14px;
   cursor: pointer;
   transition: border-color var(--t), transform var(--t);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
 .marker:hover { transform: scale(1.15); }
@@ -402,7 +402,7 @@ body {
   text-decoration: none;
 }
 
-.btn:hover   { background: #1a6fe0; }
+.btn:hover   { background: #1558b8; }
 .btn--sm     { padding: 0.3rem 0.7rem; font-size: 0.78rem; }
 .btn--outline {
   background: transparent;
@@ -411,28 +411,55 @@ body {
 }
 .btn--outline:hover { border-color: var(--accent-2); color: var(--accent-2); background: transparent; }
 .btn--full    { width: 100%; }
-.btn--danger  { background: #7f1d1d; color: #fca5a5; }
-.btn--danger:hover { background: #991b1b; }
+.btn--danger  { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
+.btn--danger:hover { background: #fecaca; }
 
 /* ── Utility ─────────────────────────────────────────── */
 .hidden { display: none !important; }
 
+/* ── Hide popup ──────────────────────────────────────── */
+.hide-popup .leaflet-popup-content-wrapper {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  padding: 0;
+}
+
+.hide-popup .leaflet-popup-content {
+  margin: 0;
+}
+
+.hide-popup .leaflet-popup-tip-container {
+  display: none;
+}
+
+.hide-popup__btn {
+  display: block;
+  background: transparent;
+  border: none;
+  color: #b91c1c;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--t);
+  border-radius: 6px;
+}
+
+.hide-popup__btn:hover {
+  background: #fee2e2;
+}
+
 /* ── Leaflet overrides ───────────────────────────────── */
 .leaflet-control-attribution {
-  background: rgba(10, 22, 40, 0.75) !important;
+  background: rgba(255,255,255,0.8) !important;
   color: var(--muted) !important;
   font-size: 0.65rem !important;
 }
 
-.leaflet-control-attribution a { color: var(--accent-2) !important; }
-
-.leaflet-bar a {
-  background: var(--surface) !important;
-  color: var(--text) !important;
-  border-color: var(--border) !important;
-}
-
-.leaflet-bar a:hover { background: var(--surface-2) !important; }
+.leaflet-control-attribution a { color: var(--accent) !important; }
 
 /* ── Responsive ──────────────────────────────────────── */
 @media (max-width: 600px) {
