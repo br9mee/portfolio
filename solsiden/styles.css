@@ -280,6 +280,8 @@ body {
   background: var(--surface);
   border: 1px solid var(--border);
   position: relative;
+  cursor: crosshair;
+  user-select: none;
 }
 
 .compass__cardinal {

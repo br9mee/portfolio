@@ -334,13 +334,50 @@ function showPubDetails(pub) {
   const dirInput  = document.getElementById('dir-input');
   const dirLabel  = document.getElementById('dir-label');
   const needle    = document.getElementById('compass-needle');
+  const compass   = document.getElementById('compass');
+
+  function bearingFromPointer(e) {
+    const rect = compass.getBoundingClientRect();
+    const cx   = rect.left + rect.width  / 2;
+    const cy   = rect.top  + rect.height / 2;
+    const dx   = (e.clientX ?? e.touches?.[0].clientX) - cx;
+    const dy   = (e.clientY ?? e.touches?.[0].clientY) - cy;
+    return Math.round((Math.atan2(dx, -dy) * 180 / Math.PI + 360) % 360);
+  }
+
+  function applyBearing(val) {
+    needle.style.transform = `rotate(${val}deg)`;
+    dirInput.value         = val;
+    dirLabel.textContent   = bearingLabel(val);
+  }
+
+  let dragging = false;
+
+  compass.addEventListener('mousedown', e => {
+    dragging = true;
+    applyBearing(bearingFromPointer(e));
+    e.preventDefault();
+  });
+
+  window.addEventListener('mousemove', e => {
+    if (dragging) applyBearing(bearingFromPointer(e));
+  });
+
+  window.addEventListener('mouseup', () => { dragging = false; });
+
+  compass.addEventListener('touchstart', e => {
+    applyBearing(bearingFromPointer(e));
+    e.preventDefault();
+  }, { passive: false });
+
+  compass.addEventListener('touchmove', e => {
+    applyBearing(bearingFromPointer(e));
+    e.preventDefault();
+  }, { passive: false });
 
   dirInput.addEventListener('input', () => {
     const val = parseInt(dirInput.value);
-    if (!isNaN(val) && val >= 0 && val <= 359) {
-      needle.style.transform = `rotate(${val}deg)`;
-      dirLabel.textContent   = bearingLabel(val);
-    }
+    if (!isNaN(val) && val >= 0 && val <= 359) applyBearing(val);
   });
 
   document.getElementById('save-dir-btn').addEventListener('click', () => {
