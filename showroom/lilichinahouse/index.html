@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Li Li China — Restaurant Oslo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="#" class="nav__logo">Li Li <span>China</span></a>
+    <ul class="nav__links">
+      <li><a href="#menu">Meny</a></li>
+      <li><a href="#om">Om oss</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <button class="nav__toggle" aria-label="Meny">&#9776;</button>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero__inner">
+      <p class="hero__label">Oslo · Kinesisk Restaurant</p>
+      <h1 class="hero__title">Autentisk<br>kinesisk mat</h1>
+      <p class="hero__sub">Tradisjonelle kinesiske retter laget med kjærlighet og friske råvarer — både til bords og til takeaway.</p>
+      <a href="#menu" class="btn">Se menyen</a>
+    </div>
+  </section>
+
+  <!-- Menu -->
+  <section class="section" id="menu">
+    <div class="container">
+      <h2 class="section__title">Meny</h2>
+      <p class="section__sub">Tradisjonelle smaker fra Kina</p>
+      <div class="menu__grid">
+
+        <div class="menu__category">
+          <h3 class="menu__heading">Forretter</h3>
+          <ul class="menu__list">
+            <li><span>Vårruller</span><span class="menu__desc">Sprø, med søt-sursaus</span></li>
+            <li><span>Wontonsuppe</span><span class="menu__desc">Hjemmelagde wontons i klar buljong</span></li>
+            <li><span>Gyoza</span><span class="menu__desc">Dampede eller stekte, med dipsaus</span></li>
+            <li><span>Rekechips</span><span class="menu__desc">Sprø og luftige</span></li>
+          </ul>
+        </div>
+
+        <div class="menu__category">
+          <h3 class="menu__heading">Hovedretter</h3>
+          <ul class="menu__list">
+            <li><span>Kylling i søt-sursaus</span><span class="menu__desc">Klassisk kantonesisk oppskrift</span></li>
+            <li><span>Kung Pao kylling</span><span class="menu__desc">Krydret med peanøtter og chili</span></li>
+            <li><span>Biff med brokkoli</span><span class="menu__desc">Mør biff i østerssaus</span></li>
+            <li><span>Mapo tofu</span><span class="menu__desc">Silketofu i krydret Sichuansaus</span></li>
+            <li><span>Stekt and</span><span class="menu__desc">Med pannekaker og hoisinsaus</span></li>
+          </ul>
+        </div>
+
+        <div class="menu__category">
+          <h3 class="menu__heading">Nudler & Ris</h3>
+          <ul class="menu__list">
+            <li><span>Chow mein</span><span class="menu__desc">Stekte nudler med grønnsaker</span></li>
+            <li><span>Stekt ris</span><span class="menu__desc">Egg, grønnsaker, valgfritt kjøtt</span></li>
+            <li><span>Lo mein</span><span class="menu__desc">Myke nudler i soyasaus</span></li>
+          </ul>
+        </div>
+
+        <div class="menu__category">
+          <h3 class="menu__heading">Takeaway-bokser</h3>
+          <ul class="menu__list">
+            <li><span>Nudelboks</span><span class="menu__desc">Chow mein med valgfritt pålegg</span></li>
+            <li><span>Risboks</span><span class="menu__desc">Stekt ris med valgfri rett</span></li>
+            <li><span>Suppeboks</span><span class="menu__desc">Wontonsuppe med nudler</span></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Om oss -->
+  <section class="section section--red" id="om">
+    <div class="container">
+      <div class="about">
+        <div class="about__text">
+          <h2 class="section__title">Et stykke Kina i Oslo</h2>
+          <p>Li Li China bringer autentiske smaker fra det kinesiske kjøkken til hjertet av Oslo. Vi bruker tradisjonelle oppskrifter og friske råvarer — enten du spiser hos oss eller tar med hjem.</p>
+          <p>Fra klassiske kantonesiske retter til krydrede Sichuan-favoritter, her finner alle noe de liker.</p>
+        </div>
+        <div class="about__facts">
+          <div class="fact"><span class="fact__icon">🥢</span><span>Tradisjonelle oppskrifter</span></div>
+          <div class="fact"><span class="fact__icon">🍜</span><span>Ferske nudler daglig</span></div>
+          <div class="fact"><span class="fact__icon">🥡</span><span>Rask takeaway</span></div>
+          <div class="fact"><span class="fact__icon">🌶️</span><span>Mild til sterk</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kontakt -->
+  <section class="section" id="kontakt">
+    <div class="container container--narrow">
+      <h2 class="section__title">Finn oss</h2>
+      <div class="contact__info">
+        <div class="contact__item">
+          <span class="contact__label">Adresse</span>
+          <span>Trondheimsveien 157, 0570 Oslo</span>
+        </div>
+        <div class="contact__item">
+          <span class="contact__label">Åpningstider</span>
+          <span>Man–Fre: 11:00–22:00</span>
+          <span>Lør–Søn: 12:00–22:00</span>
+        </div>
+      </div>
+      <div class="map-wrap">
+        <iframe
+          src="https://maps.google.com/maps?q=Trondheimsveien+157,+0570+Oslo&output=embed"
+          title="Kart over Li Li China"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; <span id="year"></span> Li Li China, Oslo. Alle rettigheter forbeholdt.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const toggle = document.querySelector('.nav__toggle');
+    const links  = document.querySelector('.nav__links');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+  </script>
+
+</body>
+</html>
