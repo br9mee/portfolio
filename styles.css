@@ -447,6 +447,10 @@ img, svg { display: block; }
   background: linear-gradient(135deg, #091830, #103a70);
 }
 
+.card__img--placeholder.card__img--alt3 {
+  background: linear-gradient(135deg, #0a1a3a, #0d2d5a);
+}
+
 .card__img--placeholder svg {
   width: 48px;
   height: 48px;
