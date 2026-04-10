@@ -1,7 +1,11 @@
 /* ── Config ──────────────────────────────────────────── */
 const OSLO_CENTER    = [59.913, 10.752];
 const OSLO_BBOX      = '59.80,10.60,59.98,10.90'; // south,west,north,east
-const OVERPASS_URL   = 'https://overpass-api.de/api/interpreter';
+const OVERPASS_ENDPOINTS = [
+  'https://overpass-api.de/api/interpreter',
+  'https://overpass.kumi.systems/api/interpreter',
+  'https://maps.mail.ru/osm/tools/overpass/api/interpreter'
+];
 const CACHE_KEY      = 'solsiden_pubs_v1';
 const SEATING_KEY    = 'solsiden_seating_v1';
 const SUN_HOURS      = { start: 5, end: 22 }; // hours to check
@@ -102,12 +106,15 @@ async function fetchAndRender() {
     if (cached) {
       pubs = JSON.parse(cached);
     } else {
-      const res = await fetch(OVERPASS_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: 'data=' + encodeURIComponent(OVERPASS_QUERY)
-      });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const encodedQuery = '?data=' + encodeURIComponent(OVERPASS_QUERY);
+      let res;
+      for (const endpoint of OVERPASS_ENDPOINTS) {
+        try {
+          res = await fetch(endpoint + encodedQuery);
+          if (res.ok) break;
+        } catch(e) { /* try next */ }
+      }
+      if (!res || !res.ok) throw new Error('All Overpass endpoints failed');
       const json = await res.json();
 
       // Normalise nodes + ways (ways have a `center` property)
