@@ -292,7 +292,8 @@ function showPubDetails(pub) {
         <div class="pub-detail__name">${escHtml(pubName(pub))}</div>
         <div class="pub-detail__meta">
           <span class="pub-detail__type">${pub.tags?.amenity || 'pub'}</span>
-          ${pubAddress(pub) ? `<span class="pub-detail__addr">${escHtml(pubAddress(pub))}</span>` : ''}
+          ${pubAddress(pub) ? `<span class="pub-detail__addr">📍 ${escHtml(pubAddress(pub))}</span>` : ''}
+          ${pubHours(pub)   ? `<span class="pub-detail__hours">🕐 ${escHtml(pubHours(pub))}</span>`   : ''}
         </div>
       </div>
       <button class="btn btn--sm btn--danger" id="hide-venue-btn" title="Hide this venue from the map">Hide</button>
@@ -587,9 +588,15 @@ function pubName(pub) {
 }
 
 function pubAddress(pub) {
-  const street = pub.tags?.['addr:street'] || '';
   const num    = pub.tags?.['addr:housenumber'] || '';
-  return [street, num].filter(Boolean).join(' ');
+  const street = pub.tags?.['addr:street'] || '';
+  const city   = pub.tags?.['addr:city'] || '';
+  const line1  = [street, num].filter(Boolean).join(' ');
+  return [line1, city].filter(Boolean).join(', ');
+}
+
+function pubHours(pub) {
+  return pub.tags?.opening_hours || null;
 }
 
 function escHtml(str) {

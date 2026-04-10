@@ -198,6 +198,13 @@ body {
   color: var(--muted);
 }
 
+.pub-detail__hours {
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.5;
+  word-break: break-word;
+}
+
 /* ── Panel card ──────────────────────────────────────── */
 .panel {
   background: var(--surface-2);
