@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solsiden — Oslo Sunny Pubs</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+
+    <header class="header">
+      <div class="header__brand">
+        <span class="header__title">Solsiden</span>
+        <span class="header__sub">Find Oslo pubs with sun on their terrace</span>
+      </div>
+      <div class="header__controls">
+        <label for="date-picker" class="header__label">Date</label>
+        <input type="date" id="date-picker" class="date-input" />
+        <button id="export-btn" class="btn btn--sm">Export JSON</button>
+        <label class="btn btn--sm btn--outline" for="import-file">Import JSON</label>
+        <input type="file" id="import-file" accept=".json" hidden />
+      </div>
+    </header>
+
+    <div class="layout">
+
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar__empty" id="sidebar-empty">
+          <div class="sidebar__empty-icon">🍺</div>
+          <p>Click a pub on the map<br>to see sun details</p>
+        </div>
+        <div class="pub-detail hidden" id="pub-detail"></div>
+      </aside>
+
+      <div class="map-wrap">
+        <div id="map"></div>
+        <div class="map-loading hidden" id="map-loading">
+          <div class="spinner"></div>
+          <span>Loading Oslo pubs…</span>
+        </div>
+        <div class="map-error hidden" id="map-error">
+          <p id="map-error-msg"></p>
+          <button class="btn btn--sm" id="retry-btn">Retry</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/suncalc@1.9.0/suncalc.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

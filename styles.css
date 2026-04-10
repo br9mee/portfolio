@@ -109,9 +109,10 @@ img, svg { display: block; }
 }
 
 .nav__logo-text {
-  font-size: 1.15rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   color: var(--color-accent-2);
   text-shadow: 0 0 18px rgba(94, 182, 255, 0.4);
 }
@@ -506,6 +507,20 @@ img, svg { display: block; }
   color: var(--color-accent-2);
   transition: color var(--transition);
   position: relative;
+}
+
+/* Stretch primary link to cover the whole card */
+.card__link:not(.card__link--secondary)::before {
+  content: '';
+  position: absolute;
+  inset: -9999px;
+  z-index: 1;
+}
+
+/* Keep secondary links and other elements above the stretched overlay */
+.card__link--secondary {
+  position: relative;
+  z-index: 2;
 }
 
 .card__link::after {

@@ -4,37 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Roaas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
   <!-- Navigation -->
   <nav class="nav">
-    <a href="#hero" class="nav__logo" aria-label="Roaas home">
-      <svg class="nav__logo-mark" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-          <linearGradient id="logo-grad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#4fa3ff"/>
-            <stop offset="100%" stop-color="#1550c8"/>
-          </linearGradient>
-          <linearGradient id="logo-gloss" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="rgba(255,255,255,0.22)"/>
-            <stop offset="55%" stop-color="rgba(255,255,255,0)"/>
-          </linearGradient>
-        </defs>
-        <!-- Background rounded square -->
-        <rect width="32" height="32" rx="8" fill="url(#logo-grad)"/>
-        <!-- Gloss overlay on top half -->
-        <rect width="32" height="16" rx="8" fill="url(#logo-gloss)"/>
-        <rect y="8" width="32" height="8" fill="url(#logo-gloss)"/>
-        <!-- Geometric R letterform -->
-        <path d="M8 7 L8 25 M8 7 L17.5 7 Q22.5 7 22.5 13 Q22.5 19 17.5 19 L8 19 M16.5 19 L23 25"
-              stroke="white" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <span class="nav__logo-text">Roaas</span>
+    <a href="#projects" class="nav__logo" aria-label="Roaas home">
+      <span class="nav__logo-text">Roaas Consultancy</span>
     </a>
     <ul class="nav__links">
-      <li><a href="#hero">Home</a></li>
+      <li><a href="#projects">Home</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -42,23 +25,6 @@
       <span></span><span></span><span></span>
     </button>
   </nav>
-
-  <!-- Hero -->
-  <section class="hero" id="hero">
-    <div class="hero__content">
-      <p class="hero__greeting">// we are</p>
-      <h1 class="hero__name">Roaas</h1>
-      <p class="hero__tagline">We craft fast, accessible, and beautiful web experiences for companies that care about quality.</p>
-      <div class="hero__actions">
-        <a href="#projects" class="btn btn--primary">View Our Work</a>
-        <a href="#contact" class="btn btn--outline">Work With Us</a>
-      </div>
-    </div>
-    <div class="hero__decoration" aria-hidden="true">
-      <div class="blob blob--1"></div>
-      <div class="blob blob--2"></div>
-    </div>
-  </section>
 
   <!-- Projects -->
   <section class="projects" id="projects">
