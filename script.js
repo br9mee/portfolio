@@ -69,78 +69,67 @@ revealEls.forEach(el => observer.observe(el));
 /* ===========================
    Contact form
    =========================== */
-const form       = document.getElementById('contact-form');
-const submitBtn  = document.getElementById('submit-btn');
-const statusEl   = document.getElementById('form-status');
+const form = document.getElementById('contact-form');
 
-const fields = {
-  name:    { el: document.getElementById('name'),    error: document.getElementById('name-error') },
-  email:   { el: document.getElementById('email'),   error: document.getElementById('email-error') },
-  message: { el: document.getElementById('message'), error: document.getElementById('message-error') },
-};
+if (form) {
+  const submitBtn  = document.getElementById('submit-btn');
+  const statusEl   = document.getElementById('form-status');
 
-function validateField(key) {
-  const { el, error } = fields[key];
-  let msg = '';
+  const fields = {
+    name:    { el: document.getElementById('name'),    error: document.getElementById('name-error') },
+    email:   { el: document.getElementById('email'),   error: document.getElementById('email-error') },
+    message: { el: document.getElementById('message'), error: document.getElementById('message-error') },
+  };
 
-  if (!el.value.trim()) {
-    msg = 'This field is required.';
-  } else if (key === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value)) {
-    msg = 'Please enter a valid email address.';
-  } else if (key === 'message' && el.value.trim().length < 10) {
-    msg = 'Message must be at least 10 characters.';
+  function validateField(key) {
+    const { el, error } = fields[key];
+    let msg = '';
+
+    if (!el.value.trim()) {
+      msg = 'This field is required.';
+    } else if (key === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value)) {
+      msg = 'Please enter a valid email address.';
+    } else if (key === 'message' && el.value.trim().length < 10) {
+      msg = 'Message must be at least 10 characters.';
+    }
+
+    error.textContent = msg;
+    el.classList.toggle('invalid', !!msg);
+    return !msg;
   }
 
-  error.textContent = msg;
-  el.classList.toggle('invalid', !!msg);
-  return !msg;
-}
-
-// Live validation on blur
-Object.keys(fields).forEach(key => {
-  fields[key].el.addEventListener('blur', () => validateField(key));
-  fields[key].el.addEventListener('input', () => {
-    if (fields[key].el.classList.contains('invalid')) validateField(key);
-  });
-});
-
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-
-  // Validate all fields
-  const valid = Object.keys(fields).map(validateField).every(Boolean);
-  if (!valid) return;
-
-  // Simulate sending (replace with your real endpoint)
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'Sending…';
-  statusEl.className = 'form__status';
-  statusEl.textContent = '';
-
-  try {
-    await fakeSubmit({
-      name: fields.name.el.value,
-      email: fields.email.el.value,
-      message: fields.message.el.value
+  Object.keys(fields).forEach(key => {
+    fields[key].el.addEventListener('blur', () => validateField(key));
+    fields[key].el.addEventListener('input', () => {
+      if (fields[key].el.classList.contains('invalid')) validateField(key);
     });
+  });
 
-    statusEl.textContent = 'Message sent! I\'ll get back to you soon.';
-    statusEl.className = 'form__status success';
-    form.reset();
-    Object.keys(fields).forEach(k => fields[k].el.classList.remove('invalid'));
-  } catch (err) {
-    statusEl.textContent = 'Something went wrong. Please try again or email me directly.';
-    statusEl.className = 'form__status error';
-  } finally {
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Send Message';
-  }
-});
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-// Placeholder — swap this for a real fetch() to your backend or a service like Formspree
-function fakeSubmit(data) {
-  console.log('Form data:', data);
-  return new Promise((resolve) => setTimeout(resolve, 1200));
+    const valid = Object.keys(fields).map(validateField).every(Boolean);
+    if (!valid) return;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+    statusEl.className = 'form__status';
+    statusEl.textContent = '';
+
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1200));
+      statusEl.textContent = 'Message sent! I\'ll get back to you soon.';
+      statusEl.className = 'form__status success';
+      form.reset();
+      Object.keys(fields).forEach(k => fields[k].el.classList.remove('invalid'));
+    } catch (err) {
+      statusEl.textContent = 'Something went wrong. Please try again or email me directly.';
+      statusEl.className = 'form__status error';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Message';
+    }
+  });
 }
 
 /* ===========================
