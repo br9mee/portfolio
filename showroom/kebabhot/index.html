@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kebab Hot — Oslo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="#" class="nav__logo">Kebab <span>Hot</span></a>
+    <ul class="nav__links">
+      <li><a href="#menu">Meny</a></li>
+      <li><a href="#om">Om oss</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <button class="nav__toggle" aria-label="Meny">&#9776;</button>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero__inner">
+      <p class="hero__label">Oslo · Rask & Smakfull Mat</p>
+      <h1 class="hero__title">Ekte kebab.<br>Saftige burgere.</h1>
+      <p class="hero__sub">Ferske råvarer, hjemmelaget saus og kjøtt på spyd — laget til deg på minutter.</p>
+      <a href="#menu" class="btn">Se menyen</a>
+    </div>
+  </section>
+
+  <!-- Menu -->
+  <section class="section" id="menu">
+    <div class="container">
+      <h2 class="section__title">Meny</h2>
+      <p class="section__sub">Alltid fersk, alltid varm</p>
+      <div class="menu__grid">
+
+        <div class="menu__category">
+          <div class="menu__icon">🥙</div>
+          <h3 class="menu__heading">Kebab</h3>
+          <ul class="menu__list">
+            <li><span>Kebab i brød</span><span class="menu__desc">Pitabrød, salatmix, saus</span></li>
+            <li><span>Kebab i tallerken</span><span class="menu__desc">Ris, salat, hjemmelaget saus</span></li>
+            <li><span>Kebab i lefse</span><span class="menu__desc">Sprø lefse, tomat, löksaus</span></li>
+            <li><span>Kebab boks</span><span class="menu__desc">Pommes frites, kjøtt, saus</span></li>
+          </ul>
+        </div>
+
+        <div class="menu__category">
+          <div class="menu__icon">🍔</div>
+          <h3 class="menu__heading">Burgere</h3>
+          <ul class="menu__list">
+            <li><span>Classic Burger</span><span class="menu__desc">Ost, salat, tomat, dressing</span></li>
+            <li><span>Double Smash</span><span class="menu__desc">Dobbel patty, cheddar, karamellisert løk</span></li>
+            <li><span>Spicy Burger</span><span class="menu__desc">Jalapeño, sriracha mayo</span></li>
+            <li><span>Chicken Burger</span><span class="menu__desc">Sprø kylling, coleslaw</span></li>
+          </ul>
+        </div>
+
+        <div class="menu__category">
+          <div class="menu__icon">🍟</div>
+          <h3 class="menu__heading">Tilbehør</h3>
+          <ul class="menu__list">
+            <li><span>Pommes frites</span><span class="menu__desc">Stor porsjon, sprø og saltet</span></li>
+            <li><span>Chicken wings</span><span class="menu__desc">6 stk, valgfri saus</span></li>
+            <li><span>Løkringer</span><span class="menu__desc">Crispy, med aioli</span></li>
+            <li><span>Sauser</span><span class="menu__desc">Hvitløk, chili, kebabsaus</span></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Om oss -->
+  <section class="section section--dark" id="om">
+    <div class="container">
+      <div class="about">
+        <div class="about__text">
+          <h2 class="section__title">Rask mat — uten å gå på kompromiss</h2>
+          <p>Hos Kebab Hot handler det om smak. Vi bruker fersk kylling og lam på spyd, hjemmelaget saus og alltid sprøe pommes frites. Du skal ikke vente lenge — og du skal ikke bli skuffet.</p>
+          <p>Vi lager også burgere etter klassisk smash-metode for maksimal smak på minst mulig tid.</p>
+        </div>
+        <div class="about__badges">
+          <div class="badge">🔥<span>Alltid varm</span></div>
+          <div class="badge">🌿<span>Ferske råvarer</span></div>
+          <div class="badge">⚡<span>Rask levering</span></div>
+          <div class="badge">🧄<span>Hjemmelaget saus</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kontakt -->
+  <section class="section" id="kontakt">
+    <div class="container container--narrow">
+      <h2 class="section__title">Finn oss</h2>
+      <div class="contact__info">
+        <div class="contact__item">
+          <span class="contact__label">Adresse</span>
+          <span>Oslo, Norge</span>
+        </div>
+        <div class="contact__item">
+          <span class="contact__label">Åpningstider</span>
+          <span>Man–Fre: 11:00–23:00</span>
+          <span>Lør–Søn: 12:00–01:00</span>
+        </div>
+        <div class="contact__item">
+          <span class="contact__label">Telefon</span>
+          <a href="tel:00000000">000 00 000</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; <span id="year"></span> Kebab Hot, Oslo. Alle rettigheter forbeholdt.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const toggle = document.querySelector('.nav__toggle');
+    const links  = document.querySelector('.nav__links');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+  </script>
+
+</body>
+</html>
