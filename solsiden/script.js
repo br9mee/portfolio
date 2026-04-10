@@ -244,7 +244,7 @@ function openMarkerPopup(pub) {
     autoPan: false
   })
     .setLatLng([pub.lat, pub.lon])
-    .setContent(`<button class="hide-popup__btn" data-id="${pub.id}">Hide</button>`)
+    .setContent(`<div class="hide-popup__name">${escHtml(pubName(pub))}</div><button class="hide-popup__btn" data-id="${pub.id}">Hide</button>`)
     .openOn(map);
 
   pub._popup = popup;
