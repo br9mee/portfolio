@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ploy's Thaimat — Oslo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="#" class="nav__logo">Ploy's <span>Thaimat</span></a>
+    <ul class="nav__links">
+      <li><a href="#menu">Meny</a></li>
+      <li><a href="#om">Om oss</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <button class="nav__toggle" aria-label="Meny">&#9776;</button>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero__inner">
+      <p class="hero__label">Oslo · Autentisk Thaimat</p>
+      <h1 class="hero__title">Hjemmelaget<br>thai — med hjerte</h1>
+      <p class="hero__sub">Tradisjonelle thairetter laget fra bunnen av med friske krydder og ekte råvarer, akkurat slik det gjøres hjemme i Thailand.</p>
+      <a href="#menu" class="btn">Se menyen</a>
+    </div>
+  </section>
+
+  <!-- Menu -->
+  <section class="section" id="menu">
+    <div class="container">
+      <h2 class="section__title">Meny</h2>
+      <p class="section__sub">Klassisk thaimat — alltid hjemmelaget</p>
+      <div class="menu__grid">
+
+        <div class="menu__category">
+          <h3 class="menu__heading">Forretter</h3>
+          <ul class="menu__list">
+            <li><span>Satay</span><span class="menu__desc">Grillspyd med peanøttsaus</span></li>
+            <li><span>Vårruller</span><span class="menu__desc">Sprø, fylt med grønnsaker</span></li>
+            <li><span>Tom Yum suppe</span><span class="menu__desc">Syrlig og krydret reksuppe</span></li>
+            <li><span>Reketoast</span><span class="menu__desc">Sprø brød med rekefarce</span></li>
+          </ul>
+        </div>
+
+        <div class="menu__category">
+          <h3 class="menu__heading">Curryretter</h3>
+          <ul class="menu__list">
+            <li><span>Grønn curry</span><span class="menu__desc">Kokosmelk, grønnsaker, valgfritt kjøtt</span></li>
+            <li><span>Rød curry</span><span class="menu__desc">Rik og krydret, med bambusskudd</span></li>
+            <li><span>Massaman curry</span><span class="menu__desc">Mild og nøtteaktig, med poteter</span></li>
+            <li><span>Panang curry</span><span class="menu__desc">Tykk og kremete, søt smak</span></li>
+          </ul>
+        </div>
+
+        <div class="menu__category">
+          <h3 class="menu__heading">Wokretter</h3>
+          <ul class="menu__list">
+            <li><span>Pad Thai</span><span class="menu__desc">Risnudler, egg, peanøtter, lime</span></li>
+            <li><span>Pad Kra Pao</span><span class="menu__desc">Stekt kjøtt med basilikum og chili</span></li>
+            <li><span>Pad See Ew</span><span class="menu__desc">Brede nudler i søt soyasaus</span></li>
+            <li><span>Stekt ris</span><span class="menu__desc">Jasminris, egg, valgfritt kjøtt</span></li>
+          </ul>
+        </div>
+
+        <div class="menu__category">
+          <h3 class="menu__heading">Supper</h3>
+          <ul class="menu__list">
+            <li><span>Tom Yum Goong</span><span class="menu__desc">Klassisk med reker og sitrongress</span></li>
+            <li><span>Tom Kha Gai</span><span class="menu__desc">Kokossuppe med kylling og galangal</span></li>
+            <li><span>Pho-inspirert suppe</span><span class="menu__desc">Klar buljong med nudler og urter</span></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Om oss -->
+  <section class="section section--green" id="om">
+    <div class="container">
+      <div class="about">
+        <div class="about__text">
+          <h2 class="section__title">Ploy's kjøkken</h2>
+          <p>Ploy lager all maten selv — slik hun lærte det hjemme i Thailand. Ingen snarveier, ingen pulverpakker. Alt er laget fra bunnen med friske urter, hjemmelaget curry-paste og kjærlighet til maten.</p>
+          <p>Velkommen inn for en ekte smaksopplevelse fra det thailandske kjøkken.</p>
+        </div>
+        <div class="about__facts">
+          <div class="fact"><span class="fact__icon">🌿</span><span>Friske urter</span></div>
+          <div class="fact"><span class="fact__icon">🍛</span><span>Hjemmelaget curry</span></div>
+          <div class="fact"><span class="fact__icon">🌶️</span><span>Mild til sterk</span></div>
+          <div class="fact"><span class="fact__icon">🥡</span><span>Takeaway tilgjengelig</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kontakt -->
+  <section class="section" id="kontakt">
+    <div class="container container--narrow">
+      <h2 class="section__title">Finn oss</h2>
+      <div class="contact__info">
+        <div class="contact__item">
+          <span class="contact__label">Adresse</span>
+          <span>Trondheimsveien 161, 0570 Oslo</span>
+        </div>
+        <div class="contact__item">
+          <span class="contact__label">Åpningstider</span>
+          <span>Tir–Fre: 11:00–21:00</span>
+          <span>Lør–Søn: 12:00–21:00</span>
+        </div>
+      </div>
+      <div class="map-wrap">
+        <iframe
+          src="https://maps.google.com/maps?q=Trondheimsveien+161,+0570+Oslo&output=embed"
+          title="Kart over Ploy's Thaimat"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; <span id="year"></span> Ploy's Thaimat, Oslo. Alle rettigheter forbeholdt.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const toggle = document.querySelector('.nav__toggle');
+    const links  = document.querySelector('.nav__links');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+  </script>
+
+</body>
+</html>
