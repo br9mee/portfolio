@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valentino — Pizza & Pub Oslo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="#" class="nav__logo">Valentino</a>
+    <ul class="nav__links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav__toggle" aria-label="Toggle menu">&#9776;</button>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero__inner">
+      <p class="hero__label">Oslo · Pizzeria & Pub</p>
+      <h1 class="hero__title">Best Pizza<br>in Town</h1>
+      <p class="hero__sub">Classic Italian recipes, cold beer, karaoke nights, and chess days — all under one roof.</p>
+      <div class="hero__actions">
+        <a href="#menu" class="btn btn--primary">See the Menu</a>
+        <a href="#contact" class="btn btn--outline">Find Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about">
+        <div class="about__text">
+          <h2 class="section__title">A little taste of Italy in Oslo</h2>
+          <p>Valentino is a neighbourhood pizzeria and pub in the heart of Oslo. We make our pizzas the classic way — quality dough, fior di latte, and fresh toppings. Whether you're after a quick slice, a full dinner, or just a cold beer with friends, you're welcome here.</p>
+          <p>Vegan and gluten-free options available on everything.</p>
+        </div>
+        <div class="about__facts">
+          <div class="fact">
+            <span class="fact__icon">🍕</span>
+            <span>Classic & vegan pizzas</span>
+          </div>
+          <div class="fact">
+            <span class="fact__icon">🍺</span>
+            <span>Pub with great drinks</span>
+          </div>
+          <div class="fact">
+            <span class="fact__icon">🎤</span>
+            <span>Karaoke nights</span>
+          </div>
+          <div class="fact">
+            <span class="fact__icon">♟️</span>
+            <span>Chess days</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu -->
+  <section class="section section--alt" id="menu">
+    <div class="container">
+      <h2 class="section__title">Menu</h2>
+      <p class="section__sub">A selection of our most popular dishes</p>
+      <div class="menu__grid">
+
+        <div class="menu__category">
+          <h3 class="menu__heading">Pizza</h3>
+          <ul class="menu__list">
+            <li><span>Margherita</span><span class="menu__desc">Tomato, fior di latte</span></li>
+            <li><span>Diavola</span><span class="menu__desc">Spicy salami, chili</span></li>
+            <li><span>Bologna</span><span class="menu__desc">Mortadella, pistachios</span></li>
+            <li><span>Toscana</span><span class="menu__desc">Prosciutto crudo, rocket</span></li>
+          </ul>
+        </div>
+
+        <div class="menu__category">
+          <h3 class="menu__heading">Vegan</h3>
+          <ul class="menu__list">
+            <li><span>Vegansk Margherita</span><span class="menu__desc">Plant-based mozzarella</span></li>
+            <li><span>Giardino</span><span class="menu__desc">Seasonal vegetables</span></li>
+            <li><span>Don Rei</span><span class="menu__desc">Vegan cheese, herbs</span></li>
+          </ul>
+        </div>
+
+        <div class="menu__category">
+          <h3 class="menu__heading">Pasta & More</h3>
+          <ul class="menu__list">
+            <li><span>Pasta</span><span class="menu__desc">Choice of sauces</span></li>
+            <li><span>Cheeseburger</span><span class="menu__desc">Classic smash burger</span></li>
+            <li><span>Gorgonzolaburger</span><span class="menu__desc">Blue cheese, caramelised onion</span></li>
+            <li><span>Fries</span><span class="menu__desc">With dipping sauces</span></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Events -->
+  <section class="section" id="events">
+    <div class="container">
+      <h2 class="section__title">Events</h2>
+      <p class="section__sub">More than just great food</p>
+      <div class="events__grid">
+        <div class="event">
+          <div class="event__icon">🎤</div>
+          <h3>Karaoke Night</h3>
+          <p>Grab the mic. Whether you're a shower singer or a seasoned performer, karaoke night is open to everyone.</p>
+        </div>
+        <div class="event">
+          <div class="event__icon">♟️</div>
+          <h3>Chess Days</h3>
+          <p>Challenge a friend or find an opponent at the bar. Boards always available. All skill levels welcome.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section section--alt" id="contact">
+    <div class="container container--narrow">
+      <h2 class="section__title">Find Us</h2>
+      <div class="contact__info">
+        <div class="contact__item">
+          <span class="contact__label">Phone</span>
+          <a href="tel:93943201">939 43 201</a>
+        </div>
+        <div class="contact__item">
+          <span class="contact__label">Location</span>
+          <span>Oslo, Norway</span>
+        </div>
+        <div class="contact__item">
+          <span class="contact__label">Follow us</span>
+          <div class="contact__social">
+            <a href="https://valentinopizzeria.no" target="_blank" rel="noopener">Website</a>
+            <a href="#" target="_blank" rel="noopener">Facebook</a>
+            <a href="#" target="_blank" rel="noopener">Instagram</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; <span id="year"></span> Valentino Pizzeria, Oslo</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const toggle = document.querySelector('.nav__toggle');
+    const links  = document.querySelector('.nav__links');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+  </script>
+
+</body>
+</html>
