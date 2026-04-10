@@ -104,6 +104,7 @@ async function fetchAndRender() {
     } else {
       const res = await fetch(OVERPASS_URL, {
         method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: 'data=' + encodeURIComponent(OVERPASS_QUERY)
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
