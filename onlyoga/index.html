@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Onlyoga — Oslo</title>
+  <title>Onlyoga</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -15,12 +15,19 @@
   <nav class="nav">
     <a href="#" class="nav__logo">Onlyoga</a>
     <ul class="nav__links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#classes">Classes</a></li>
-      <li><a href="#schedule">Schedule</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about" data-i18n="navAbout">About</a></li>
+      <li><a href="#classes" data-i18n="navClasses">Classes</a></li>
+      <li><a href="#instructors" data-i18n="navInstructors">Instructors</a></li>
+      <li><a href="#contact" data-i18n="navContact">Contact</a></li>
     </ul>
-    <a href="#contact" class="btn btn--outline nav__cta">Book a Class</a>
+    <div class="nav__right">
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <span class="lang-divider" aria-hidden="true">|</span>
+        <button class="lang-btn" data-lang="no">NO</button>
+      </div>
+      <a href="#contact" class="btn btn--outline nav__cta" data-i18n="navCta">Get Started</a>
+    </div>
     <button class="nav__toggle" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
@@ -29,12 +36,12 @@
   <!-- Hero -->
   <section class="hero" id="hero">
     <div class="hero__inner">
-      <p class="hero__location">Oslo, Norway</p>
-      <h1 class="hero__title">Find stillness<br /><em>in motion.</em></h1>
-      <p class="hero__sub">A sanctuary for mindful movement in the heart of Oslo. All bodies. All levels. Every breath welcome.</p>
+      <p class="hero__location" data-i18n="heroTag">Online · Anytime · Anywhere</p>
+      <h1 class="hero__title"><span data-i18n="heroTitle1">Yoga at home,</span><br /><em data-i18n="heroTitle2">without compromise.</em></h1>
+      <p class="hero__sub" data-i18n="heroSub">Master the 26 Bikram postures at home, flow through Vinyasa, or unwind with Yin and Calm — guided by two experienced instructors, available anytime.</p>
       <div class="hero__actions">
-        <a href="#classes" class="btn btn--primary">Explore Classes</a>
-        <a href="#schedule" class="btn btn--ghost">View Schedule</a>
+        <a href="#classes" class="btn btn--primary" data-i18n="heroBtn1">Explore Classes</a>
+        <a href="#instructors" class="btn btn--ghost" data-i18n="heroBtn2">Meet the Instructors</a>
       </div>
     </div>
     <div class="hero__visual" aria-hidden="true">
@@ -61,7 +68,7 @@
       </div>
     </div>
     <div class="hero__scroll" aria-hidden="true">
-      <span>scroll</span>
+      <span data-i18n="heroScroll">scroll</span>
       <div class="hero__scroll-line"></div>
     </div>
   </section>
@@ -70,28 +77,28 @@
   <section class="about" id="about">
     <div class="container about__grid">
       <div class="about__text reveal">
-        <span class="label">Our Philosophy</span>
-        <h2 class="section__title">Yoga as it was<br />meant to be felt.</h2>
-        <p>Founded in Oslo with a simple belief — yoga is for everyone. Whether you've never set foot on a mat or have practiced for years, Onlyoga is your space to breathe, move, and be.</p>
-        <p>Our teachers bring warmth, precision, and deep care to every class. Small groups. Intentional space. Real community.</p>
-        <a href="#classes" class="btn btn--primary">See All Classes</a>
+        <span class="label" data-i18n="aboutLabel">Our Platform</span>
+        <h2 class="section__title"><span data-i18n="aboutTitle1">Real yoga,</span><br /><em data-i18n="aboutTitle2">wherever you are.</em></h2>
+        <p data-i18n="aboutP1">Onlyoga brings expert-led yoga straight to your living room. Whether you're working through the 26 Bikram postures, flowing through a Vinyasa sequence, or settling into a deep Yin hold — your practice is always within reach.</p>
+        <p data-i18n="aboutP2">Two experienced instructors. Every style, from beginner-friendly Calm sessions to advanced flows. No studio required.</p>
+        <a href="#classes" class="btn btn--primary" data-i18n="aboutBtn">See All Classes</a>
       </div>
       <div class="about__feature-wrap reveal reveal--right">
         <div class="about__feature">
           <div class="feature-card">
-            <span class="feature-card__num">01</span>
-            <h3>Small Classes</h3>
-            <p>Maximum 12 students per session so every practitioner gets personal attention.</p>
+            <span class="feature-card__num" data-i18n="feat1Num">01</span>
+            <h3 data-i18n="feat1Title">On Demand</h3>
+            <p data-i18n="feat1Desc">Every class is available whenever you need it. Morning Bikram, lunchtime Yin, evening Calm — your schedule, your pace.</p>
           </div>
           <div class="feature-card">
-            <span class="feature-card__num">02</span>
-            <h3>All Levels</h3>
-            <p>From complete beginners to advanced — every class is adapted to the room.</p>
+            <span class="feature-card__num" data-i18n="feat2Num">02</span>
+            <h3 data-i18n="feat2Title">Expert Instructors</h3>
+            <p data-i18n="feat2Desc">Two certified instructors bring years of experience to every session, with clear guidance and thoughtful cues.</p>
           </div>
           <div class="feature-card">
-            <span class="feature-card__num">03</span>
-            <h3>Oslo Studio</h3>
-            <p>A calm, airy studio in central Oslo. Natural light, wooden floors, no distractions.</p>
+            <span class="feature-card__num" data-i18n="feat3Num">03</span>
+            <h3 data-i18n="feat3Title">Every Style</h3>
+            <p data-i18n="feat3Desc">From the structured heat of Bikram to the deep stillness of Yin — six class types to suit every mood and level.</p>
           </div>
         </div>
       </div>
@@ -102,21 +109,22 @@
   <section class="classes" id="classes">
     <div class="container">
       <div class="section__header reveal">
-        <span class="label">What We Offer</span>
-        <h2 class="section__title">Find your practice.</h2>
+        <span class="label" data-i18n="classesLabel">What We Offer</span>
+        <h2 class="section__title" data-i18n="classesTitle">Find your practice.</h2>
       </div>
       <div class="classes__grid">
 
         <article class="class-card reveal">
           <div class="class-card__icon">
             <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="24" cy="10" r="4"/>
-              <path d="M24 14 C24 14 16 20 10 28 M24 14 C24 14 32 20 38 28 M24 14 L24 32 M24 32 C24 32 18 38 14 42 M24 32 C24 32 30 38 34 42"/>
+              <circle cx="24" cy="8" r="3.5"/>
+              <path d="M24 12 L24 28 M14 18 C14 18 18 22 24 20 C30 18 34 22 34 22 M24 28 L18 40 M24 28 L30 40"/>
+              <path d="M12 16 C8 14 6 16 8 20 M36 16 C40 14 42 16 40 20"/>
             </svg>
           </div>
-          <h3 class="class-card__name">Hatha</h3>
-          <p class="class-card__desc">Slow, foundational, grounding. Perfect for building strength and flexibility at a gentle pace.</p>
-          <span class="class-card__level">All levels</span>
+          <h3 class="class-card__name" data-i18n="bikramName">Bikram</h3>
+          <p class="class-card__desc" data-i18n="bikramDesc">The classic 26-posture series — guided step by step, with full walkthroughs of each pose and its benefits.</p>
+          <span class="class-card__level" data-i18n="bikramLevel">All levels</span>
         </article>
 
         <article class="class-card reveal">
@@ -126,9 +134,9 @@
               <circle cx="24" cy="6" r="3"/>
             </svg>
           </div>
-          <h3 class="class-card__name">Vinyasa Flow</h3>
-          <p class="class-card__desc">Dynamic movement synchronized with breath. Creative sequencing that challenges and energises.</p>
-          <span class="class-card__level">Intermediate</span>
+          <h3 class="class-card__name" data-i18n="vinyasaName">Vinyasa Flow</h3>
+          <p class="class-card__desc" data-i18n="vinyasaDesc">Dynamic movement synchronized with breath. Creative sequencing that challenges and energises.</p>
+          <span class="class-card__level" data-i18n="vinyasaLevel">Intermediate</span>
         </article>
 
         <article class="class-card reveal">
@@ -140,9 +148,24 @@
               <circle cx="24" cy="5" r="2"/>
             </svg>
           </div>
-          <h3 class="class-card__name">Yin</h3>
-          <p class="class-card__desc">Long, passive holds that release deep connective tissue. Meditative, restorative, deeply calming.</p>
-          <span class="class-card__level">All levels</span>
+          <h3 class="class-card__name" data-i18n="yinName">Yin</h3>
+          <p class="class-card__desc" data-i18n="yinDesc">Long, passive holds that release deep connective tissue. Meditative, restorative, deeply calming.</p>
+          <span class="class-card__level" data-i18n="yinLevel">All levels</span>
+        </article>
+
+        <article class="class-card reveal">
+          <div class="class-card__icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 30 C10 20 16 12 24 12 C32 12 38 20 38 30"/>
+              <path d="M16 38 C16 34 19.6 32 24 32 C28.4 32 32 34 32 38"/>
+              <line x1="24" y1="12" x2="24" y2="6"/>
+              <line x1="14" y1="16" x2="10" y2="12"/>
+              <line x1="34" y1="16" x2="38" y2="12"/>
+            </svg>
+          </div>
+          <h3 class="class-card__name" data-i18n="calmName">Calm</h3>
+          <p class="class-card__desc" data-i18n="calmDesc">Gentle, accessible yoga for stress relief, recovery, and slowing down. Perfect for tired days or complete beginners.</p>
+          <span class="class-card__level" data-i18n="calmLevel">Beginner</span>
         </article>
 
         <article class="class-card reveal">
@@ -153,23 +176,9 @@
               <path d="M24 20 C22 20 20 22 20 24 C20 26 22 28 24 28 C26 28 28 26 28 24 C28 22 26 20 24 20Z"/>
             </svg>
           </div>
-          <h3 class="class-card__name">Meditation</h3>
-          <p class="class-card__desc">Guided stillness. Learn to settle the mind and find clarity through breath and presence.</p>
-          <span class="class-card__level">All levels</span>
-        </article>
-
-        <article class="class-card reveal">
-          <div class="class-card__icon">
-            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 38 C10 38 16 28 24 28 C32 28 38 38 38 38"/>
-              <circle cx="24" cy="20" r="6"/>
-              <path d="M18 30 C14 32 10 34 8 38"/>
-              <path d="M30 30 C34 32 38 34 40 38"/>
-            </svg>
-          </div>
-          <h3 class="class-card__name">Prenatal</h3>
-          <p class="class-card__desc">Nurturing sequences designed for every trimester. Safe, supportive, and deeply restorative.</p>
-          <span class="class-card__level">Expecting mothers</span>
+          <h3 class="class-card__name" data-i18n="meditationName">Meditation</h3>
+          <p class="class-card__desc" data-i18n="meditationDesc">Guided stillness. Learn to settle the mind and find clarity through breath and presence.</p>
+          <span class="class-card__level" data-i18n="meditationLevel">All levels</span>
         </article>
 
         <article class="class-card reveal">
@@ -180,77 +189,58 @@
               <path d="M6 20 C6 20 12 24 18 20 M30 20 C30 20 36 24 42 20"/>
             </svg>
           </div>
-          <h3 class="class-card__name">Ashtanga</h3>
-          <p class="class-card__desc">A structured, energetic series. Build discipline, heat, and a powerful mind-body connection.</p>
-          <span class="class-card__level">Advanced</span>
+          <h3 class="class-card__name" data-i18n="advancedName">Advanced Flow</h3>
+          <p class="class-card__desc" data-i18n="advancedDesc">A demanding, energetic series that builds discipline, heat, and a powerful mind-body connection.</p>
+          <span class="class-card__level" data-i18n="advancedLevel">Advanced</span>
         </article>
 
       </div>
     </div>
   </section>
 
-  <!-- Schedule -->
-  <section class="schedule" id="schedule">
+  <!-- Instructors -->
+  <section class="instructors" id="instructors">
     <div class="container">
       <div class="section__header reveal">
-        <span class="label">Weekly Schedule</span>
-        <h2 class="section__title">Join us this week.</h2>
+        <span class="label" data-i18n="instrLabel">Your Guides</span>
+        <h2 class="section__title" data-i18n="instrTitle">Meet the instructors.</h2>
       </div>
-      <div class="schedule__table-wrap reveal">
-        <table class="schedule__table">
-          <thead>
-            <tr>
-              <th>Time</th>
-              <th>Monday</th>
-              <th>Wednesday</th>
-              <th>Friday</th>
-              <th>Saturday</th>
-              <th>Sunday</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="time">07:00</td>
-              <td><span class="class-pill">Hatha</span></td>
-              <td><span class="class-pill">Vinyasa</span></td>
-              <td><span class="class-pill">Hatha</span></td>
-              <td>—</td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td class="time">10:00</td>
-              <td>—</td>
-              <td><span class="class-pill class-pill--yin">Yin</span></td>
-              <td>—</td>
-              <td><span class="class-pill">Hatha</span></td>
-              <td><span class="class-pill class-pill--med">Meditation</span></td>
-            </tr>
-            <tr>
-              <td class="time">12:00</td>
-              <td><span class="class-pill class-pill--pre">Prenatal</span></td>
-              <td>—</td>
-              <td><span class="class-pill class-pill--yin">Yin</span></td>
-              <td><span class="class-pill">Vinyasa</span></td>
-              <td><span class="class-pill">Hatha</span></td>
-            </tr>
-            <tr>
-              <td class="time">17:30</td>
-              <td><span class="class-pill">Vinyasa</span></td>
-              <td><span class="class-pill">Hatha</span></td>
-              <td><span class="class-pill">Ashtanga</span></td>
-              <td>—</td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td class="time">19:00</td>
-              <td><span class="class-pill class-pill--med">Meditation</span></td>
-              <td><span class="class-pill">Ashtanga</span></td>
-              <td><span class="class-pill class-pill--med">Meditation</span></td>
-              <td><span class="class-pill class-pill--yin">Yin</span></td>
-              <td>—</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="instructors__grid">
+
+        <article class="instructor-card reveal">
+          <div class="instructor-card__avatar instructor-card__avatar--1">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="40" cy="29" r="15" fill="rgba(255,255,255,0.45)"/>
+              <path d="M10 76c0-16.569 13.431-30 30-30s30 13.431 30 30" fill="rgba(255,255,255,0.3)"/>
+            </svg>
+          </div>
+          <h3 class="instructor-card__name" data-i18n="instr1Name">Astrid Moen</h3>
+          <p class="instructor-card__role" data-i18n="instr1Role">Bikram &amp; Vinyasa</p>
+          <p class="instructor-card__bio" data-i18n="instr1Bio">With over twelve years on the mat, Astrid specialises in Bikram and dynamic Vinyasa flows. Her classes are warm, precise, and deeply motivating — she guides you through every posture with clarity and care.</p>
+          <div class="instructor-card__tags">
+            <span class="instructor-card__tag">Bikram</span>
+            <span class="instructor-card__tag">Vinyasa Flow</span>
+            <span class="instructor-card__tag" data-i18n="advancedName">Advanced Flow</span>
+          </div>
+        </article>
+
+        <article class="instructor-card reveal reveal--right">
+          <div class="instructor-card__avatar instructor-card__avatar--2">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="40" cy="29" r="15" fill="rgba(255,255,255,0.45)"/>
+              <path d="M10 76c0-16.569 13.431-30 30-30s30 13.431 30 30" fill="rgba(255,255,255,0.3)"/>
+            </svg>
+          </div>
+          <h3 class="instructor-card__name" data-i18n="instr2Name">Lena Bakke</h3>
+          <p class="instructor-card__role" data-i18n="instr2Role">Yin &amp; Restorative</p>
+          <p class="instructor-card__bio" data-i18n="instr2Bio">Lena brings a calm, nurturing energy to every session. Her Yin and Calm classes are known for their depth, care, and ability to leave you completely at ease — no matter where you start.</p>
+          <div class="instructor-card__tags">
+            <span class="instructor-card__tag">Yin</span>
+            <span class="instructor-card__tag" data-i18n="calmName">Calm</span>
+            <span class="instructor-card__tag" data-i18n="meditationName">Meditation</span>
+          </div>
+        </article>
+
       </div>
     </div>
   </section>
@@ -259,16 +249,13 @@
   <section class="contact" id="contact">
     <div class="container contact__grid">
       <div class="contact__info reveal">
-        <span class="label">Find Us</span>
-        <h2 class="section__title">Come breathe with us.</h2>
+        <span class="label" data-i18n="contactLabel">Get In Touch</span>
+        <h2 class="section__title" data-i18n="contactTitle">Start your journey.</h2>
+        <p class="contact__intro" data-i18n="contactSub">Have a question or want to try a free class? We'd love to hear from you.</p>
         <ul class="contact__details">
           <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-            <span>Storgata 22, 0182 Oslo</span>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.1 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z"/></svg>
-            <span>+47 22 00 00 00</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><path d="M2 12h4M18 12h4M12 2v4M12 18v4"/><circle cx="12" cy="12" r="3"/></svg>
+            <span data-i18n="contactAvail">Available worldwide, online</span>
           </li>
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -276,40 +263,40 @@
           </li>
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <span>Mon–Fri: 06:30–21:00<br/>Sat–Sun: 09:00–18:00</span>
+            <span data-i18n="contactHours">Classes available 24/7</span>
           </li>
         </ul>
       </div>
       <div class="contact__form-wrap reveal reveal--right">
         <form class="form" id="contact-form" novalidate>
-          <h3 class="form__title">Book a free trial class</h3>
+          <h3 class="form__title" data-i18n="formTitle">Book a free class</h3>
           <div class="form__group">
-            <label for="name" class="form__label">Name</label>
-            <input type="text" id="name" name="name" class="form__input" placeholder="Your name" required />
+            <label for="name" class="form__label" data-i18n="formName">Name</label>
+            <input type="text" id="name" name="name" class="form__input" data-i18n-ph="formNamePh" placeholder="Your name" required />
             <span class="form__error" id="name-error"></span>
           </div>
           <div class="form__group">
-            <label for="email" class="form__label">Email</label>
-            <input type="email" id="email" name="email" class="form__input" placeholder="your@email.com" required />
+            <label for="email" class="form__label" data-i18n="formEmail">Email</label>
+            <input type="email" id="email" name="email" class="form__input" data-i18n-ph="formEmailPh" placeholder="your@email.com" required />
             <span class="form__error" id="email-error"></span>
           </div>
           <div class="form__group">
-            <label for="class-type" class="form__label">Preferred Class</label>
+            <label for="class-type" class="form__label" data-i18n="formStyle">Preferred Style</label>
             <select id="class-type" name="class-type" class="form__input form__select">
-              <option value="">— Select a class —</option>
-              <option>Hatha</option>
-              <option>Vinyasa Flow</option>
-              <option>Yin</option>
-              <option>Meditation</option>
-              <option>Prenatal</option>
-              <option>Ashtanga</option>
+              <option value="" data-i18n="formStylePh">— Select a style —</option>
+              <option data-i18n="bikramName">Bikram</option>
+              <option data-i18n="vinyasaName">Vinyasa Flow</option>
+              <option data-i18n="yinName">Yin</option>
+              <option data-i18n="calmName">Calm</option>
+              <option data-i18n="meditationName">Meditation</option>
+              <option data-i18n="advancedName">Advanced Flow</option>
             </select>
           </div>
           <div class="form__group">
-            <label for="message" class="form__label">Message (optional)</label>
-            <textarea id="message" name="message" class="form__input form__textarea" placeholder="Any questions or notes for us?" rows="3"></textarea>
+            <label for="message" class="form__label" data-i18n="formMessage">Message (optional)</label>
+            <textarea id="message" name="message" class="form__input form__textarea" data-i18n-ph="formMessagePh" placeholder="Any questions for us?" rows="3"></textarea>
           </div>
-          <button type="submit" class="btn btn--primary btn--full" id="submit-btn">Reserve My Spot</button>
+          <button type="submit" class="btn btn--primary btn--full" id="submit-btn" data-i18n="formSubmit">Reserve My Spot</button>
           <p class="form__status" id="form-status" aria-live="polite"></p>
         </form>
       </div>
@@ -320,7 +307,7 @@
   <footer class="footer">
     <div class="container">
       <p class="footer__logo">Onlyoga</p>
-      <p class="footer__copy">&copy; <span id="year"></span> Onlyoga Oslo. All rights reserved.</p>
+      <p class="footer__copy">&copy; <span id="year"></span> <span data-i18n="footerCopy">Onlyoga. All rights reserved.</span></p>
       <ul class="footer__social">
         <li><a href="#" aria-label="Instagram">
           <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>

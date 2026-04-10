@@ -171,6 +171,7 @@ p { color: var(--color-muted); }
   background: rgba(247, 243, 238, 0.88);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--color-border);
+  gap: 1.5rem;
 }
 
 .nav__logo {
@@ -180,11 +181,14 @@ p { color: var(--color-muted); }
   letter-spacing: 0.05em;
   color: var(--color-text);
   font-style: italic;
+  flex-shrink: 0;
 }
 
 .nav__links {
   display: flex;
   gap: 2.5rem;
+  flex: 1;
+  justify-content: center;
 }
 
 .nav__links a {
@@ -210,6 +214,53 @@ p { color: var(--color-muted); }
 
 .nav__links a:hover { color: var(--color-text); }
 .nav__links a:hover::after { width: 100%; }
+
+.nav__right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+/* Language toggle */
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: rgba(78, 110, 78, 0.07);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  padding: 0.2rem 0.5rem;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+  padding: 0.2rem 0.4rem;
+  border-radius: var(--radius-pill);
+  transition: all var(--transition);
+}
+
+.lang-btn.active {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.lang-btn:not(.active):hover {
+  color: var(--color-accent);
+}
+
+.lang-divider {
+  color: var(--color-border);
+  font-size: 0.75rem;
+  user-select: none;
+}
 
 .nav__cta { font-size: 0.8rem; padding: 0.55rem 1.3rem; }
 
@@ -274,7 +325,7 @@ p { color: var(--color-muted); }
 .hero__sub {
   font-size: 1rem;
   color: var(--color-muted);
-  max-width: 400px;
+  max-width: 420px;
   margin-bottom: 2.5rem;
   line-height: 1.8;
 }
@@ -495,90 +546,99 @@ p { color: var(--color-muted); }
 }
 
 /* ===========================
-   Schedule
+   Instructors
    =========================== */
-.schedule {
+.instructors {
   padding-block: 7rem;
   background: var(--color-surface);
 }
 
-.schedule__table-wrap {
-  overflow-x: auto;
-  border-radius: var(--radius-md);
+.instructors__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.instructor-card {
+  background: var(--color-cream);
   border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-soft);
+  border-radius: var(--radius-lg);
+  padding: 3rem 2.5rem;
+  text-align: center;
+  transition: box-shadow var(--transition), transform var(--transition);
 }
 
-.schedule__table {
+.instructor-card:hover {
+  box-shadow: var(--shadow-card);
+  transform: translateY(-4px);
+}
+
+.instructor-card__avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  margin: 0 auto 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.instructor-card__avatar--1 {
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-2) 100%);
+}
+
+.instructor-card__avatar--2 {
+  background: linear-gradient(135deg, var(--color-warm) 0%, #d4a882 100%);
+}
+
+.instructor-card__avatar svg {
   width: 100%;
-  border-collapse: collapse;
-  font-size: 0.88rem;
-  background: var(--color-surface);
+  height: 100%;
 }
 
-.schedule__table th {
-  padding: 1rem 1.25rem;
-  text-align: left;
-  font-size: 0.72rem;
+.instructor-card__name {
+  font-family: var(--font-serif);
+  font-size: 1.7rem;
+  font-weight: 300;
+  color: var(--color-text);
+  margin-bottom: 0.2rem;
+}
+
+.instructor-card__role {
+  font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-muted);
-  background: var(--color-cream);
-  border-bottom: 1px solid var(--color-border);
-}
-
-.schedule__table td {
-  padding: 0.9rem 1.25rem;
-  border-bottom: 1px solid var(--color-border);
-  color: var(--color-muted);
-  vertical-align: middle;
-}
-
-.schedule__table tr:last-child td {
-  border-bottom: none;
-}
-
-.schedule__table tr:hover td {
-  background: var(--color-bg);
-}
-
-.schedule__table td.time {
-  font-family: var(--font-serif);
-  font-size: 1rem;
-  color: var(--color-text);
-  white-space: nowrap;
-  font-style: italic;
-}
-
-.class-pill {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  border-radius: var(--radius-pill);
-  font-size: 0.78rem;
-  font-weight: 500;
-  background: rgba(78, 110, 78, 0.1);
-  color: var(--color-accent);
-  border: 1px solid rgba(78, 110, 78, 0.2);
-  white-space: nowrap;
-}
-
-.class-pill--yin {
-  background: rgba(122, 158, 110, 0.12);
-  color: #5a8050;
-  border-color: rgba(122, 158, 110, 0.25);
-}
-
-.class-pill--med {
-  background: rgba(196, 149, 106, 0.1);
   color: var(--color-warm);
-  border-color: rgba(196, 149, 106, 0.25);
+  margin-bottom: 1.25rem;
 }
 
-.class-pill--pre {
-  background: rgba(160, 130, 100, 0.1);
-  color: #9a7050;
-  border-color: rgba(160, 130, 100, 0.22);
+.instructor-card__bio {
+  font-size: 0.92rem;
+  line-height: 1.85;
+  color: var(--color-muted);
+  margin-bottom: 1.75rem;
+}
+
+.instructor-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.instructor-card__tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent-2);
+  border-radius: var(--radius-pill);
+  padding: 0.2rem 0.75rem;
+  background: rgba(78, 110, 78, 0.06);
 }
 
 /* ===========================
@@ -594,6 +654,12 @@ p { color: var(--color-muted); }
   grid-template-columns: 1fr 1fr;
   gap: 5rem;
   align-items: start;
+}
+
+.contact__intro {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin-bottom: 0.5rem;
 }
 
 .contact__details {
@@ -791,6 +857,12 @@ p { color: var(--color-muted); }
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .instructors__grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin-inline: auto;
+  }
+
   .nav__links,
   .nav__cta {
     display: none;
@@ -820,4 +892,5 @@ p { color: var(--color-muted); }
 @media (max-width: 600px) {
   .classes__grid { grid-template-columns: 1fr; }
   .footer .container { flex-direction: column; text-align: center; }
+  .nav__right { gap: 0.5rem; }
 }
