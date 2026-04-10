@@ -165,6 +165,13 @@ body {
   gap: 1rem;
 }
 
+.pub-detail__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
 .pub-detail__name {
   font-size: 1.15rem;
   font-weight: 700;
@@ -403,7 +410,9 @@ body {
   color: var(--muted);
 }
 .btn--outline:hover { border-color: var(--accent-2); color: var(--accent-2); background: transparent; }
-.btn--full   { width: 100%; }
+.btn--full    { width: 100%; }
+.btn--danger  { background: #7f1d1d; color: #fca5a5; }
+.btn--danger:hover { background: #991b1b; }
 
 /* ── Utility ─────────────────────────────────────────── */
 .hidden { display: none !important; }

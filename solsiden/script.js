@@ -6,16 +6,28 @@ const OVERPASS_ENDPOINTS = [
   'https://overpass.kumi.systems/api/interpreter',
   'https://maps.mail.ru/osm/tools/overpass/api/interpreter'
 ];
-const CACHE_KEY      = 'solsiden_pubs_v1';
+const CACHE_KEY      = 'solsiden_pubs_v2';
 const SEATING_KEY    = 'solsiden_seating_v1';
+const HIDDEN_KEY     = 'solsiden_hidden_v1';
 const SUN_HOURS      = { start: 5, end: 22 }; // hours to check
+
+const VENUE_EMOJI = {
+  pub:        '🍺',
+  bar:        '🍸',
+  restaurant: '🍽️',
+  cafe:       '☕'
+};
 
 const OVERPASS_QUERY = `[out:json][timeout:30];
 (
   node["amenity"="pub"](${OSLO_BBOX});
   node["amenity"="bar"](${OSLO_BBOX});
+  node["amenity"="restaurant"](${OSLO_BBOX});
+  node["amenity"="cafe"](${OSLO_BBOX});
   way["amenity"="pub"](${OSLO_BBOX});
   way["amenity"="bar"](${OSLO_BBOX});
+  way["amenity"="restaurant"](${OSLO_BBOX});
+  way["amenity"="cafe"](${OSLO_BBOX});
 );
 out center body;`;
 
@@ -23,17 +35,19 @@ out center body;`;
 let map;
 let pubs          = [];
 let seatingData   = {};
+let hiddenVenues  = new Set();
 let selectedPubId = null;
 let sunCache      = new Map(); // key: `${pubId}_${date}` → sunHours[]
 
 /* ── Bootstrap ───────────────────────────────────────── */
 async function init() {
   initMap();
-  seatingData = await loadSeatingData();
+  [seatingData, hiddenVenues] = await Promise.all([loadSeatingData(), loadHiddenVenues()]);
   setDefaultDate();
 
   document.getElementById('date-picker').addEventListener('change', onDateChange);
   document.getElementById('export-btn').addEventListener('click', exportData);
+  document.getElementById('export-hidden-btn').addEventListener('click', exportHidden);
   document.getElementById('import-file').addEventListener('change', importData);
   document.getElementById('retry-btn').addEventListener('click', () => {
     sessionStorage.removeItem(CACHE_KEY);
@@ -92,6 +106,25 @@ async function loadSeatingData() {
   }
 }
 
+async function loadHiddenVenues() {
+  const stored = localStorage.getItem(HIDDEN_KEY);
+  if (stored) {
+    try { return new Set(JSON.parse(stored)); } catch(e) { /* fall through */ }
+  }
+  try {
+    const res = await fetch('./hidden-venues.json');
+    if (!res.ok) return new Set();
+    const data = await res.json();
+    return new Set((data.hidden || []).map(String));
+  } catch(e) {
+    return new Set();
+  }
+}
+
+function saveHiddenVenues() {
+  localStorage.setItem(HIDDEN_KEY, JSON.stringify([...hiddenVenues]));
+}
+
 function saveSeatingData() {
   localStorage.setItem(SEATING_KEY, JSON.stringify(seatingData));
   sunCache.clear(); // invalidate sun cache when seating changes
@@ -141,10 +174,15 @@ async function fetchAndRender() {
 }
 
 /* ── Markers ─────────────────────────────────────────── */
+function venueEmoji(pub) {
+  return VENUE_EMOJI[pub.tags?.amenity] || '🍺';
+}
+
 function renderMarkers() {
   const date = getSelectedDate();
 
   pubs.forEach(pub => {
+    if (hiddenVenues.has(String(pub.id))) return;
     const seating   = seatingData[pub.id];
     const hasSunNow = seating?.direction != null ? pubHasSunNow(pub, seating.direction, date) : false;
     const marker    = makeMarker(pub, hasSunNow);
@@ -154,20 +192,13 @@ function renderMarkers() {
 }
 
 function makeMarker(pub, hasSun) {
-  const seating      = seatingData[pub.id];
-  const configured   = seating?.direction != null;
-  const isActive     = pub.id === selectedPubId;
-
-  const cls = [
-    'marker',
-    hasSun      ? 'marker--sun'    : '',
-    isActive    ? 'marker--active' : '',
-  ].filter(Boolean).join(' ');
+  const isActive = pub.id === selectedPubId;
+  const cls = ['marker', hasSun ? 'marker--sun' : '', isActive ? 'marker--active' : ''].filter(Boolean).join(' ');
 
   return L.marker([pub.lat, pub.lon], {
     icon: L.divIcon({
       className: '',
-      html: `<div class="${cls}" title="${escHtml(pubName(pub))}">🍺</div>`,
+      html: `<div class="${cls}" title="${escHtml(pubName(pub))}">${venueEmoji(pub)}</div>`,
       iconSize: [28, 28],
       iconAnchor: [14, 14]
     }),
@@ -177,21 +208,32 @@ function makeMarker(pub, hasSun) {
 
 function refreshMarkerIcon(pub) {
   if (!pub._marker) return;
-  const date      = getSelectedDate();
-  const seating   = seatingData[pub.id];
-  const hasSunNow = seating?.direction != null ? pubHasSunNow(pub, seating.direction, date) : false;
-  const isActive  = pub.id === selectedPubId;
-  const hasSun    = hasSunNow;
-
+  const date    = getSelectedDate();
+  const seating = seatingData[pub.id];
+  const hasSun  = seating?.direction != null ? pubHasSunNow(pub, seating.direction, date) : false;
+  const isActive = pub.id === selectedPubId;
   const cls = ['marker', hasSun ? 'marker--sun' : '', isActive ? 'marker--active' : ''].filter(Boolean).join(' ');
 
   pub._marker.setIcon(L.divIcon({
     className: '',
-    html: `<div class="${cls}" title="${escHtml(pubName(pub))}">🍺</div>`,
+    html: `<div class="${cls}" title="${escHtml(pubName(pub))}">${venueEmoji(pub)}</div>`,
     iconSize: [28, 28],
     iconAnchor: [14, 14],
     zIndexOffset: isActive ? 1000 : 0
   }));
+}
+
+function hideVenue(pub) {
+  hiddenVenues.add(String(pub.id));
+  saveHiddenVenues();
+  if (pub._marker) {
+    map.removeLayer(pub._marker);
+    pub._marker = null;
+  }
+  // Close sidebar
+  selectedPubId = null;
+  document.getElementById('pub-detail').classList.add('hidden');
+  document.getElementById('sidebar-empty').classList.remove('hidden');
 }
 
 /* ── Sidebar ─────────────────────────────────────────── */
@@ -220,10 +262,15 @@ function showPubDetails(pub) {
 
   const el = document.getElementById('pub-detail');
   el.innerHTML = `
-    <div class="pub-detail__name">${escHtml(pubName(pub))}</div>
-    <div class="pub-detail__meta">
-      <span class="pub-detail__type">${pub.tags?.amenity || 'pub'}</span>
-      ${pubAddress(pub) ? `<span class="pub-detail__addr">${escHtml(pubAddress(pub))}</span>` : ''}
+    <div class="pub-detail__header">
+      <div>
+        <div class="pub-detail__name">${escHtml(pubName(pub))}</div>
+        <div class="pub-detail__meta">
+          <span class="pub-detail__type">${pub.tags?.amenity || 'pub'}</span>
+          ${pubAddress(pub) ? `<span class="pub-detail__addr">${escHtml(pubAddress(pub))}</span>` : ''}
+        </div>
+      </div>
+      <button class="btn btn--sm btn--danger" id="hide-venue-btn" title="Hide this venue from the map">Hide</button>
     </div>
 
     <div class="panel">
@@ -283,6 +330,8 @@ function showPubDetails(pub) {
     const newSunHours = getSunHours(pub, val, date);
     document.getElementById('sun-content').innerHTML = renderSunPanel(newSunHours);
   });
+
+  document.getElementById('hide-venue-btn').addEventListener('click', () => hideVenue(pub));
 
   // Show sidebar
   document.getElementById('sidebar-empty').classList.add('hidden');
@@ -395,6 +444,15 @@ function exportData() {
   const blob    = new Blob([payload], { type: 'application/json' });
   const url     = URL.createObjectURL(blob);
   const a       = Object.assign(document.createElement('a'), { href: url, download: 'seating-data.json' });
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function exportHidden() {
+  const payload = JSON.stringify({ version: 1, hidden: [...hiddenVenues] }, null, 2);
+  const blob    = new Blob([payload], { type: 'application/json' });
+  const url     = URL.createObjectURL(blob);
+  const a       = Object.assign(document.createElement('a'), { href: url, download: 'hidden-venues.json' });
   a.click();
   URL.revokeObjectURL(url);
 }
